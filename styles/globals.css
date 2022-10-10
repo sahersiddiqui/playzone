@@ -1,0 +1,310 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.App {
+  /* text-align: center; */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.MuiTableContainer-root {
+  margin: 10% auto;
+  width: 50% !important;
+}
+
+.AppHeader {
+  display: flex;
+  color: whitesmoke;
+  align-items: center;
+  justify-content: left;
+}
+
+.FooterHeart {
+  color: red !important;
+}
+
+.AppFooter {
+  font-size: 13px;
+}
+
+.RightsText {
+  text-align: right;
+}
+
+.GameBoard {
+  height: auto;
+  min-height: 40vh !important;
+  /* border-radius: 5px; */
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  /* margin: auto; */
+  /* margin-top: 12%; */
+  /* margin-bottom: 12%; */
+}
+
+.GameBoard > div {
+  width: 75%;
+  background-color: #f0f2f5;
+  padding: 10px;
+  /* margin-bottom: 12%; */
+}
+
+.GameBoard .Heading {
+  padding: 5%;
+  font-size: 2em;
+  display: flex;
+  align-items: center;
+}
+
+.AnalyticsBoard {
+  height: auto;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.AnalyticsBoard > div {
+  width: 75%;
+  min-height: 30vh;
+  background-color: #f0f2f5;
+  padding: 5%;
+}
+
+.ProgressCircle {
+  padding-top: 10% !important;
+  padding-left: 20% !important;
+}
+
+.WinnerBoard {
+  height: auto;
+  display: flex;
+  justify-content: center;
+  /* margin: auto; */
+  /* margin-top: 12%;
+  margin-bottom: 12%; */
+}
+
+.WinnerBoard > div {
+  width: 75%;
+  background-color: #f0f2f5;
+  padding: 5%;
+  margin-bottom: 50px;
+}
+
+.WinnerBoard .Heading {
+  /* padding: 3% 0 0 3%; */
+  font-size: 2em;
+  /* margin-top: 5%; */
+  align-items: center;
+  /* display: inline-flex; */
+  justify-content: left;
+}
+
+.notes {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+}
+
+.notes > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-right: 15%;
+  padding-top: 18%;
+}
+
+.WinnerTableHead {
+  padding: 2%;
+  font-weight: 700;
+  text-align: center;
+}
+
+.WinnerTableBody {
+  padding-top: 3%;
+  font-weight: 500;
+  padding-bottom: 0%;
+  text-align: center;
+  font-size: 1.7em !important;
+}
+
+.PlayIconX {
+  color: #68b6f2;
+  font-size: 3.5em !important;
+}
+
+.PlayIconO {
+  color: #68b6f2;
+  font-size: 3.5em !important;
+}
+
+.PlayIconBlank {
+  cursor: Pointer;
+}
+
+.NoteText {
+  color: #ff4d4f;
+}
+
+.ResetMatch {
+  color: #ff4d4f;
+  cursor: Pointer;
+}
+
+.TurnColumn {
+  padding-top: 7% !important;
+}
+
+.FadeTab {
+  padding: 2% !important;
+  min-width: 30%;
+  font-weight: 800;
+  box-shadow: none;
+  font-size: 0.9rem !important;
+  border-radius: 4px !important;
+  transform-origin: 0 0 0;
+  border: 1px solid #03a9f4 !important;
+}
+
+.FadeTabOver {
+  padding: 2% !important;
+  min-width: 30%;
+  font-weight: 800;
+  box-shadow: none;
+  font-size: 0.9rem !important;
+  border-radius: 4px !important;
+  transform-origin: 0 0 0;
+  border: 1px solid #52c41a !important;
+}
+
+.FadeTabDraw {
+  padding: 2% !important;
+  min-width: 30%;
+  font-weight: 800;
+  box-shadow: none;
+  font-size: 0.9rem !important;
+  border-radius: 4px !important;
+  transform-origin: 0 0 0;
+  border: 1px solid #faad14 !important;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .MuiTableContainer-root {
+    width: 80% !important;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .MuiTableContainer-root {
+    width: 90% !important;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .GameBoard {
+    margin: 10% 0%;
+  }
+
+  .AnalyticsBoard {
+    margin-bottom: 50px;
+  }
+
+  .TurnColumn {
+    padding-top: 0% !important;
+    padding-bottom: 10% !important;
+  }
+
+  .PlayIconX {
+    font-size: 3em !important;
+  }
+
+  .PlayIconO {
+    font-size: 2.5em !important;
+  }
+
+  .RightsText {
+    text-align: center;
+  }
+
+  .CreditsText {
+    text-align: center;
+  }
+
+  .AppFooter {
+    font-size: 11px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .AnalyticsBoard > div > div {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 50px;
+  }
+
+  .notes {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .notes > div {
+    padding: 0;
+    align-items: center;
+  }
+}
+
