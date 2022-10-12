@@ -55,7 +55,7 @@ function GameRoom() {
 
           {room ? (
             <>
-              <p>You're now connected to room: {room}</p>
+              <p>You are now connected to room: {room}</p>
             </>
           ) : (
             <></>
