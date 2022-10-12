@@ -2,7 +2,13 @@ import io from "socket.io-client";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-const socket = io.connect("https://playzone-server.herokuapp.com/");
+const connectionOptions = {
+  timeout: 10000,
+  transports: ["websocket"],
+  "force new connection": true,
+  reconnectionAttempts: "Infinity",
+};
+const socket = io.connect("https://playzone-server.herokuapp.com/", connectionOptions);
 
 function GameRoom() {
   const router = useRouter();
@@ -15,35 +21,48 @@ function GameRoom() {
   // Messages States
   const [message, setMessage] = useState([]);
   const [errorMesg, setErrorMesg] = useState("");
+  const [username, setUsername] = useState(
+    `player_${Math.random().toString(36).slice(8)}`
+  );
   const [currMesg, setCurrMesg] = useState({ user: "", mesg: "" });
 
   useEffect(() => {
-    let game_id = game_room
+    let room_id = game_room
       ? game_room
       : window.location.pathname.split("/").reverse().filter(Boolean)[0];
-    setRoom(game_id);
 
-    debugger;
-    if (game_id && counter < 1) {
+    setRoom(room_id);
+
+    // Letting user join the room only once
+    if (room_id && counter < 1) {
       counter++;
-      socket.emit("join_room", game_id);
+      socket.emit("join_room", { room_id, username });
     }
 
+    // Room users max limit reach exception handling
     socket.on("join_room", (data) => {
       if (!data) setErrorMesg("Play room is full!");
     });
 
+    // Receiving data from server
     socket.on(`broadcast_message`, (data) => {
       setMessage([...message, data]);
     });
+
+    // // Closeing browser tab exception handling
+    // socket.on("left_room", (reason) => {
+    //   if (reason === "transport close") socket.emit("leave_room", room_id);
+    // });
+
+    // return () => {
+    //   socket.disconnect();
+    //   socket.off();
+    //   socket.emit("disconnect_custom", room_id);
+    // };
   }, []);
 
   const sendMessage = () => {
     if (!errorMesg) socket.emit("send_message", { data: currMesg, room });
-    else
-      setErrorMesg(
-        `${errorMesg}<br/> Someone is already playing game with your friend.`
-      );
     setCurrMesg({ user: "", mesg: "" });
   };
 
@@ -69,7 +88,10 @@ function GameRoom() {
             value={currMesg.mesg}
             style={{ resize: "none" }}
             onChange={(event) =>
-              setCurrMesg({ user: "username", mesg: event.target.value })
+              setCurrMesg({
+                user: username,
+                mesg: event.target.value,
+              })
             }
           />
           <button onClick={() => sendMessage()} style={{ padding: "8px" }}>
