@@ -1,16 +1,18 @@
 import { Col, Row } from "antd";
 import HeaderComponent from "../components/Header";
 import FooterComponent from "../components/Footer";
-import React, { useEffect, useRef, useState } from "react";
+import { Backdrop, Typography } from "@mui/material";
 import GameBoardComponent from "../components/GameBoard";
 import AnalyticsComponent from "../components/Analytics";
 import ResultBarComponent from "../components/ResultBar";
+import React, { useEffect, useRef, useState } from "react";
 
 export default function TicTacToe() {
   const [counter, setCounter] = useState(0);
   const [responses, setResponses] = useState([]);
   const [winnerTeam, setWinnerTeam] = useState("_");
   const [isMatchTie, setIsMatchTie] = useState(false);
+  const [backdropState, setBackdropState] = useState(true);
   const [winnerDeclared, setWinnerDeclared] = useState(false);
   const [showResponseBar, setShowResponseBar] = useState(false);
 
@@ -78,6 +80,14 @@ export default function TicTacToe() {
 
   return (
     <div className="App">
+      <Backdrop
+        open={backdropState}
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+      >
+        <Typography>Waiting for your friend to join</Typography>
+        {/* <CircularProgress color="inherit" /> */}
+      </Backdrop>
+
       <ResultBarComponent
         showResponseBar={showResponseBar}
         responseMesg={
