@@ -193,6 +193,7 @@ a {
 .WinnerBoard .Heading {
   /* padding: 3% 0 0 3%; */
   font-size: 2em;
+  color: #fff;
   /* margin-top: 5%; */
   align-items: center;
   /* display: inline-flex; */
@@ -215,6 +216,7 @@ a {
 
 .WinnerTableHead {
   padding: 2%;
+  color: #fff;
   font-weight: 700;
   text-align: center;
 }
@@ -236,8 +238,8 @@ a {
 }
 
 .appIcon {
-  color: #fff;
-  font-size: 1.4em;
+  color: #fff !important;
+  font-size: 1.4em !important;
 }
 
 .PlayIconBlank {
@@ -265,10 +267,10 @@ a {
   font-size: 0.9rem !important;
   border-radius: 4px !important;
   transform-origin: 0 0 0;
-  border: 1px solid #f9f9f9 !important;
 }
 
 .FadeTabOver {
+  background-color: #181818 !important;
   padding: 2% !important;
   min-width: 30%;
   font-weight: 800;
@@ -276,10 +278,11 @@ a {
   font-size: 0.9rem !important;
   border-radius: 4px !important;
   transform-origin: 0 0 0;
-  border: 1px solid #52c41a !important;
+  border: 0 !important;
 }
 
 .FadeTabDraw {
+  background-color: #181818 !important;
   padding: 2% !important;
   min-width: 30%;
   font-weight: 800;
@@ -287,7 +290,7 @@ a {
   font-size: 0.9rem !important;
   border-radius: 4px !important;
   transform-origin: 0 0 0;
-  border: 1px solid #faad14 !important;
+  border: 0 !important;
 }
 
 .linear-title {
@@ -391,7 +394,7 @@ a {
   }
 
   .appIcon {
-    font-size: 1em;
+    font-size: 1em !important;
   }
 }
 

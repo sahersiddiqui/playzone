@@ -67,7 +67,14 @@ const GameBoardComponent = ({
                 className="FadeTab"
                 {...(true ? { timeout: 1000 } : {})}
               >
-                <Tag icon={<SyncOutlined spin />} color="white" style={{backgroundColor: "#181818"}}>
+                <Tag
+                  icon={<SyncOutlined spin />}
+                  color="white"
+                  style={{
+                    backgroundColor: "#181818",
+                    color: counter % 2 === 0 ? "#ff5db1" : "#00c2bb",
+                  }}
+                >
                   Player {counter % 2 === 0 ? "X" : "O"} Turn
                 </Tag>
               </Fade>

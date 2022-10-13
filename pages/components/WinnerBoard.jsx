@@ -1,6 +1,6 @@
 import { Col, Row, Layout } from "antd";
 import { Divider, Hidden } from "@mui/material";
-import { FrownTwoTone, SlidersTwoTone, SmileTwoTone } from "@ant-design/icons";
+import { FrownTwoTone, SlidersOutlined, SmileTwoTone } from "@ant-design/icons";
 
 const WinnerBoardComponent = ({ winnerTeam, winnerDeclared, isMatchTie }) => {
   const { Content } = Layout;
@@ -8,15 +8,18 @@ const WinnerBoardComponent = ({ winnerTeam, winnerDeclared, isMatchTie }) => {
   return (
     <>
       <Content className="WinnerBoard">
-        <div>
+        <div className="darkThemeLight">
           <Row>
             <Col xs={24}>
               <h1 className="Heading">
-                <SlidersTwoTone size={"large"} />
+                <SlidersOutlined className="appIcon" />
                 &nbsp;&nbsp;
                 <Hidden smDown>Winner</Hidden> Score Board
               </h1>
-              <Divider orientation="horizontal" />
+              <Divider
+                orientation="horizontal"
+                style={{ backgroundColor: "#fff" }}
+              />
             </Col>
           </Row>
           <Row className="WinnerTableHead">
@@ -24,9 +27,12 @@ const WinnerBoardComponent = ({ winnerTeam, winnerDeclared, isMatchTie }) => {
             <Col xs={8}>Player O</Col>
             <Col xs={8}>Match Tie</Col>
           </Row>
-          <Divider orientation="horizontal" />
+          <Divider
+            orientation="horizontal"
+            style={{ backgroundColor: "#fff" }}
+          />
           <Row className="WinnerTableBody">
-            <Col span={8}>
+            <Col span={8} style={{ color: "#fff" }}>
               {!winnerDeclared ? (
                 "_"
               ) : winnerTeam === "x" ? (
@@ -35,7 +41,7 @@ const WinnerBoardComponent = ({ winnerTeam, winnerDeclared, isMatchTie }) => {
                 <FrownTwoTone twoToneColor="#faad14" />
               )}
             </Col>
-            <Col span={8}>
+            <Col span={8} style={{ color: "#fff" }}>
               {!winnerDeclared ? (
                 "_"
               ) : winnerTeam === "o" ? (
@@ -44,7 +50,9 @@ const WinnerBoardComponent = ({ winnerTeam, winnerDeclared, isMatchTie }) => {
                 <FrownTwoTone twoToneColor="#faad14" />
               )}
             </Col>
-            <Col span={8}>{isMatchTie ? <SmileTwoTone /> : "_"}</Col>
+            <Col span={8} style={{ color: "#fff" }}>
+              {isMatchTie ? <SmileTwoTone /> : "_"}
+            </Col>
           </Row>
         </div>
       </Content>
