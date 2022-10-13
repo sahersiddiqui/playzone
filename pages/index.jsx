@@ -1,9 +1,5 @@
 import Head from "next/head";
 import { Col, Row } from "antd";
-import { Button, Typography } from "@mui/material";
-import style from "../styles/Home.module.css";
-import FooterComponent from "./components/Footer";
-import HeaderComponent from "./components/Header";
 import { useRouter } from "next/router";
 
 export default function Home() {
@@ -15,7 +11,7 @@ export default function Home() {
   };
 
   return (
-    <div className="App">
+    <div className="HomeContent">
       <Head>
         <title>Play Zone</title>
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
@@ -28,24 +24,38 @@ export default function Home() {
         />
       </Head>
       <Row>
-        <Col span={24}>
-          <HeaderComponent />
+        <Col
+          xs={24}
+          md={12}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            flexDirection: "column",
+          }}
+        >
+          <img
+            src="/home-logo.jpeg"
+            alt="home logo"
+            className="zoom-in-out-image"
+          />
         </Col>
       </Row>
       <Row>
-        <Col span={24}>
-          <div className={style.mainContent}>
-            <Typography variant="h2">Tic Tac Toe</Typography>
-            <br />
-            <Button onClick={joinRoom} variant="contained">
-              Click to start the game
-            </Button>
-          </div>
-        </Col>
-      </Row>
-      <Row>
-        <Col span={24}>
-          <FooterComponent />
+        <Col
+          xs={24}
+          md={12}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            flexDirection: "column",
+            marginTop: "7%",
+          }}
+        >
+          <img
+            src="/home-title.jpg"
+            alt="home title"
+            className="linear-title"
+          />
         </Col>
       </Row>
     </div>
