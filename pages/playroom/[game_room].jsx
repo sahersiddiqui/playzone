@@ -1,6 +1,7 @@
 import io from "socket.io-client";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { Backdrop, CircularProgress } from "@mui/material";
 
 const connectionOptions = {
   timeout: 10000,
@@ -8,7 +9,10 @@ const connectionOptions = {
   "force new connection": true,
   reconnectionAttempts: "Infinity",
 };
-const socket = io.connect("https://playzone-server.herokuapp.com/", connectionOptions);
+const socket = io.connect(
+  "https://playzone-server.herokuapp.com",
+  connectionOptions
+);
 
 function GameRoom() {
   const router = useRouter();
@@ -17,6 +21,7 @@ function GameRoom() {
   // Room State
   let counter = 0;
   const [room, setRoom] = useState("");
+  const [backdropState, setBackdropState] = useState(true);
 
   // Messages States
   const [message, setMessage] = useState([]);
@@ -49,16 +54,13 @@ function GameRoom() {
       setMessage([...message, data]);
     });
 
-    // // Closeing browser tab exception handling
-    // socket.on("left_room", (reason) => {
-    //   if (reason === "transport close") socket.emit("leave_room", room_id);
-    // });
-
-    // return () => {
-    //   socket.disconnect();
-    //   socket.off();
-    //   socket.emit("disconnect_custom", room_id);
-    // };
+    // Handle game board enable/disable scenario
+    socket.on(`enable_gameboard`, () => {
+      setBackdropState(false);
+    });
+    socket.on(`disable_gameboard`, () => {
+      setBackdropState(true);
+    });
   }, []);
 
   const sendMessage = () => {
@@ -69,6 +71,12 @@ function GameRoom() {
   return (
     <div className="App">
       <div className="App-header">
+        <Backdrop
+          open={backdropState}
+          sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        >
+          <CircularProgress color="inherit" />
+        </Backdrop>
         <div>
           {errorMesg}
 
