@@ -166,13 +166,11 @@ a {
 }
 
 .PlayIconX {
-  color: #68b6f2;
-  font-size: 3.5em !important;
+  height: 6em !important;
 }
 
 .PlayIconO {
-  color: #68b6f2;
-  font-size: 3.5em !important;
+  height: 5em !important;
 }
 
 .PlayIconBlank {
@@ -268,11 +266,13 @@ a {
   }
 
   .PlayIconX {
-    font-size: 3em !important;
+    /* font-size: 3em !important; */
+    height: 3em !important;
   }
 
   .PlayIconO {
-    font-size: 2.5em !important;
+    /* font-size: 2.5em !important; */
+    height: 2.5em !important;
   }
 
   .RightsText {
@@ -307,4 +307,3 @@ a {
     align-items: center;
   }
 }
-

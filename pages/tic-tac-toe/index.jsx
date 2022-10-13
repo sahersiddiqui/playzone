@@ -1,17 +1,18 @@
-import Head from "next/head";
 import { Col, Row } from "antd";
 import HeaderComponent from "../components/Header";
 import FooterComponent from "../components/Footer";
-import React, { useEffect, useRef, useState } from "react";
+import { Backdrop, Typography } from "@mui/material";
 import GameBoardComponent from "../components/GameBoard";
 import AnalyticsComponent from "../components/Analytics";
 import ResultBarComponent from "../components/ResultBar";
+import React, { useEffect, useRef, useState } from "react";
 
 export default function TicTacToe() {
   const [counter, setCounter] = useState(0);
   const [responses, setResponses] = useState([]);
   const [winnerTeam, setWinnerTeam] = useState("_");
   const [isMatchTie, setIsMatchTie] = useState(false);
+  const [backdropState, setBackdropState] = useState(true);
   const [winnerDeclared, setWinnerDeclared] = useState(false);
   const [showResponseBar, setShowResponseBar] = useState(false);
 
@@ -79,17 +80,14 @@ export default function TicTacToe() {
 
   return (
     <div className="App">
-      <Head>
-        <title>Play Zone</title>
-        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-        <meta property="og:image" content="/favicon.jpg" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#000000" />
-        <meta
-          name="description"
-          content="Play Tic-Tac-Toe online with your friends."
-        />
-      </Head>
+      <Backdrop
+        open={backdropState}
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+      >
+        <Typography>Waiting for your friend to join</Typography>
+        {/* <CircularProgress color="inherit" /> */}
+      </Backdrop>
+
       <ResultBarComponent
         showResponseBar={showResponseBar}
         responseMesg={
