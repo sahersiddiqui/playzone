@@ -14,9 +14,26 @@ const GameBoardComponent = ({
   isMatchTie,
   populateBoard,
   winnerDeclared,
+  winnerIndex,
+  winnerTeam,
 }) => {
   const show = true;
   const { Content } = Layout;
+
+  let winningLineClass = "";
+  let lineColor = "";
+
+  if (winnerIndex === 0) winningLineClass = "t-horizontal-line";
+  else if (winnerIndex === 1) winningLineClass = "m-horizontal-line";
+  else if (winnerIndex === 2) winningLineClass = "b-horizontal-line";
+  else if (winnerIndex === 3) winningLineClass = "l-vertical-line";
+  else if (winnerIndex === 4) winningLineClass = "m-vertical-line";
+  else if (winnerIndex === 5) winningLineClass = "r-vertical-line";
+  else if (winnerIndex === 6) winningLineClass = "r-diagonal-line";
+  else if (winnerIndex === 7) winningLineClass = "diagonal-line";
+
+  if (winnerTeam == "x") lineColor = "#ff00b1";
+  else if (winnerTeam == "o") lineColor = "#00cabc";
 
   return (
     <>
@@ -31,6 +48,11 @@ const GameBoardComponent = ({
             </Col>
             <Col span={3}></Col>
             <Col span={18}>
+              <span
+                class={`line ${winningLineClass}`}
+                style={{ borderColor: lineColor }}
+              ></span>
+
               <CrossBoardComponent
                 counter={counter}
                 responses={responses}

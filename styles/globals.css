@@ -60,7 +60,7 @@ a {
   -webkit-text-fill-color: transparent;
 }
 
-.HomeActions > .ant-col {
+.HomeActions>.ant-col {
   display: flex;
   padding-bottom: 5%;
   align-items: center;
@@ -138,13 +138,89 @@ a {
   /* border-radius: 5px; */
   display: flex;
   justify-content: center;
+  position: relative;
+
   /* align-items: center; */
   /* margin: auto; */
   /* margin-top: 12%; */
   /* margin-bottom: 12%; */
 }
 
-.GameBoard > div {
+
+/* winning cut line css */
+.line {
+  border-top: 5px solid white;
+  position: absolute;
+  box-sizing: border-box;
+  z-index: 1;
+
+}
+
+.diagonal-line {
+  width: calc(108%) !important;
+  transform: rotate(-33.5deg);
+  transform-origin: bottom left;
+  bottom: 17px;
+  left: 25px;
+}
+
+.r-diagonal-line {
+  width: calc(108%) !important;
+  transform: rotate(33.5deg);
+  transform-origin: bottom right;
+  bottom: 17px;
+  right: 25px;
+}
+
+.l-vertical-line {
+  width: calc(66%) !important;
+  transform: rotate(-90deg);
+  transform-origin: bottom left;
+  bottom: 0px;
+  left: 16%;
+}
+
+.m-vertical-line {
+  width: calc(66%) !important;
+  transform: rotate(-90deg);
+  transform-origin: bottom left;
+  bottom: 0px;
+  left: 50%;
+}
+
+.r-vertical-line {
+  width: calc(66%) !important;
+  transform: rotate(-90deg);
+  transform-origin: bottom left;
+  bottom: 0px;
+  left: 83%;
+}
+
+.t-horizontal-line {
+  width: calc(100%) !important;
+  transform-origin: top left;
+  top: 15%;
+  left: 0%;
+}
+
+.m-horizontal-line {
+  width: calc(100%) !important;
+  transform-origin: top left;
+  top: 50%;
+  left: 0%;
+}
+
+.b-horizontal-line {
+  width: calc(100%) !important;
+  transform-origin: top left;
+  top: 85%;
+  left: 0%;
+}
+
+/* winning cut line css */
+
+
+.GameBoard>div {
   width: 75%;
   background-color: #f0f2f5;
   padding: 10px;
@@ -167,7 +243,7 @@ a {
   margin-bottom: 30px;
 }
 
-.AnalyticsBoard > div {
+.AnalyticsBoard>div {
   width: 75%;
   min-height: 30vh;
   background-color: #f0f2f5;
@@ -176,7 +252,7 @@ a {
 
 .ProgressCircle {
   padding-top: 10% !important;
-  padding-left: 20% !important;
+  padding-left: 13% !important;
 }
 
 .WinnerBoard {
@@ -188,7 +264,7 @@ a {
   margin-bottom: 12%; */
 }
 
-.WinnerBoard > div {
+.WinnerBoard>div {
   width: 75%;
   background-color: #f0f2f5;
   padding: 5%;
@@ -211,7 +287,7 @@ a {
   flex-direction: column;
 }
 
-.notes > div {
+.notes>div {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -401,6 +477,43 @@ a {
   .appIcon {
     font-size: 1em !important;
   }
+
+  /* winning cut line css */
+
+  .line {
+    border-width: 3px;
+  }
+
+
+  .diagonal-line {
+    width: calc(118%) !important;
+    transform: rotate(-43deg);
+    bottom: 7%;
+    left: 8%;
+  }
+
+  .r-diagonal-line {
+    width: calc(118%) !important;
+    transform: rotate(43deg);
+    bottom: 7%;
+    right: 8%;
+  }
+
+  .l-vertical-line {
+    width: calc(95%) !important;
+  }
+
+  .m-vertical-line {
+    width: calc(95%) !important;
+  }
+
+  .r-vertical-line {
+    width: calc(95%) !important;
+  }
+
+  /* winning cut line css */
+
+
 }
 
 @media screen and (max-width: 600px) {
@@ -416,7 +529,7 @@ a {
 }
 
 @media screen and (max-width: 991px) {
-  .AnalyticsBoard > div > div {
+  .AnalyticsBoard>div>div {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -429,7 +542,7 @@ a {
     flex-direction: column;
   }
 
-  .notes > div {
+  .notes>div {
     padding: 0;
     align-items: center;
   }
