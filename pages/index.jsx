@@ -44,12 +44,12 @@ export default function Home() {
       <br />
       <Row className="HomeActions">
         <Col xs={24} md={6}></Col>
-        <Col xs={24} md={6}>
+        {/* <Col xs={24} md={6}>
           <Link href="#">
             <a className="PlayButton">Online Player</a>
           </Link>
-        </Col>
-        <Col xs={24} md={6}>
+        </Col> */}
+        <Col xs={24} md={12}>
           <Link href="/tic-tac-toe">
             <a className="PlayButton">Offline Player</a>
           </Link>
