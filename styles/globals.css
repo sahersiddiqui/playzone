@@ -113,6 +113,7 @@ a {
 
 .AppFooter {
   font-size: 13px;
+  color: whitesmoke;
 }
 
 .RightsText {
@@ -121,6 +122,10 @@ a {
 
 .darkThemeLight {
   background-color: #181818 !important;
+}
+
+.ant-progress-text {
+  color: #c0eefc !important;
 }
 
 .darkThemeDark {

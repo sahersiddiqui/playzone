@@ -1,6 +1,6 @@
 import WinnerBoardComponent from "./WinnerBoard";
 import { Col, Layout, Progress, Row } from "antd";
-import { DashboardTwoTone, ProfileTwoTone } from "@ant-design/icons";
+import { DashboardOutlined, ProfileOutlined } from "@ant-design/icons";
 
 const AnalyticsComponent = ({
   counter,
@@ -14,12 +14,12 @@ const AnalyticsComponent = ({
   return (
     <>
       <Content className="AnalyticsBoard">
-        <Row>
+        <Row className="darkThemeLight" style={{ color: "#fff" }}>
           <Col xs={24} lg={12}>
             <div>
-              <h1>
-                <DashboardTwoTone size={"large"} />
-                &nbsp;&nbsp;Statics
+              <h1 style={{ color: "#fff" }}>
+                <DashboardOutlined className="appIcon" />
+                &nbsp;&nbsp;Progress
               </h1>
               <span>
                 <Progress
@@ -30,18 +30,19 @@ const AnalyticsComponent = ({
                   strokeColor={
                     counter >= 9
                       ? {
-                          "0%": "#108ee9",
-                          "100%": "#87d068",
+                          "0%": "#00c2bb",
+                          "100%": "#ff5db1",
                         }
                       : !counter
                       ? { "100%": "#F1CFC8" }
-                      : { "0%": "#c0eefc", "100%": "#68b6f2" }
+                      : { "0%": "#00c2bb", "100%": "#ff5db1" }
                   }
                   className="ProgressCircle"
                   percent={
                     !counter ? 100 : parseFloat((counter / 9) * 100).toFixed(1)
                   }
                   title="Completion Percentage"
+                  style={{ color: "red !important" }}
                   // format={() => "Done"}
                 />
               </span>
@@ -49,9 +50,9 @@ const AnalyticsComponent = ({
           </Col>
           <Col xs={24} lg={12}>
             <div className="notes">
-              <h1>
+              <h1 style={{ color: "#fff" }}>
                 Notes&nbsp;&nbsp;
-                <ProfileTwoTone size={"large"} />
+                <ProfileOutlined className="appIcon" />
               </h1>
               <div>
                 <div>
