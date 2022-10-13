@@ -26,24 +26,24 @@ const CrossBoardComponent = ({ counter, responses, populateBoard }) => {
       <Grid container spacing={0} columnSpacing={0}>
         {fields.map((item, index) => {
           let border = "0";
-          if (index === 1) border = "0px 2px 0px 2px";
-          else if (index === 3) border = "2px 0px 2px 0px";
-          else if (index === 5) border = "2px 0px 2px 0px";
-          else if (index === 7) border = "0px 2px 0px 2px";
-          else if (index === 4) border = "2px";
+          if (index === 1) border = "0px 3px 0px 3px";
+          else if (index === 3) border = "3px 0px 3px 0px";
+          else if (index === 5) border = "3px 0px 3px 0px";
+          else if (index === 7) border = "0px 3px 0px 3px";
+          else if (index === 4) border = "3px";
           return (
             <Grid
               item
               xs={4}
               style={{
                 borderWidth: border,
-                borderColor: "#606162",
+                borderColor: "#fff",
                 borderStyle: "solid",
               }}
               key={index}
             >
               {responses?.[index] ? (
-                <Item>
+                <Item className="PlayIconBlank">
                   {responses?.[index] === "x" ? (
                     <img src="/images/x.svg" className="PlayIconX" />
                   ) : (
@@ -52,6 +52,7 @@ const CrossBoardComponent = ({ counter, responses, populateBoard }) => {
                 </Item>
               ) : (
                 <Item
+                  style={{ cursor: "Pointer" }}
                   className="PlayIconBlank"
                   onClick={() =>
                     populateBoard(index, counter % 2 === 0 ? "x" : "o")

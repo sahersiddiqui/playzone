@@ -1,4 +1,5 @@
 import { Col, Row } from "antd";
+import MetaTag from "../components/MetaTag";
 import HeaderComponent from "../components/Header";
 import FooterComponent from "../components/Footer";
 import GameBoardComponent from "../components/GameBoard";
@@ -78,6 +79,7 @@ export default function TicTacToe() {
 
   return (
     <div className="App">
+      <MetaTag />
       <ResultBarComponent
         showResponseBar={showResponseBar}
         responseMesg={
