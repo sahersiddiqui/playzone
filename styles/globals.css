@@ -142,7 +142,7 @@ a {
 }
 
 .line{
-  border-top: 2px solid black;
+  border-top: 5px solid white;
   position: absolute;
   box-sizing: border-box;
   z-index: 1;

@@ -14,6 +14,7 @@ export default function TicTacToe() {
   const [isMatchTie, setIsMatchTie] = useState(false);
   const [winnerDeclared, setWinnerDeclared] = useState(false);
   const [showResponseBar, setShowResponseBar] = useState(false);
+  const [winnerIndex, setWinnerIndex] = useState();
 
   const winningConditions = [
     // Horizontal
@@ -55,6 +56,7 @@ export default function TicTacToe() {
     setWinnerTeam("_");
     setIsMatchTie(false);
     setWinnerDeclared(false);
+    setWinnerIndex("");
     topRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
@@ -67,12 +69,13 @@ export default function TicTacToe() {
 
   const checkWinner = (value) => {
     setCounter(counter + 1);
-    winningConditions.map((item) => {
+    winningConditions.map((item, index) => {
       let condRes = item.every((elem) => responses[elem] === value);
       if (condRes) {
         setWinnerTeam(value);
         setWinnerDeclared(true);
         setShowResponseBar(true);
+        setWinnerIndex(index);
       }
     });
   };
@@ -107,6 +110,7 @@ export default function TicTacToe() {
             isMatchTie={isMatchTie}
             populateBoard={populateBoard}
             winnerDeclared={winnerDeclared}
+            winnerIndex={winnerIndex}
           />
         </Col>
         <Col xs={24} sm={12}>

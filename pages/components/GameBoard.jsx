@@ -14,10 +14,21 @@ const GameBoardComponent = ({
   isMatchTie,
   populateBoard,
   winnerDeclared,
+  winnerIndex,
 }) => {
   const show = true;
   const { Content } = Layout;
 
+  let winningLineClass = "";
+
+  if (winnerIndex === 0) winningLineClass = "t-horizontal-line";
+  else if (winnerIndex === 1) winningLineClass = "m-horizontal-line";
+  else if (winnerIndex === 2) winningLineClass = "b-horizontal-line";
+  else if (winnerIndex === 3) winningLineClass = "l-vertical-line";
+  else if (winnerIndex === 4) winningLineClass = "m-vertical-line";
+  else if (winnerIndex === 5) winningLineClass = "r-vertical-line";
+  else if (winnerIndex === 6) winningLineClass = "r-diagonal-line";
+  else if (winnerIndex === 7) winningLineClass = "diagonal-line";
   return (
     <>
       <Content className="GameBoard">
@@ -31,7 +42,7 @@ const GameBoardComponent = ({
             </Col>
             <Col span={3}></Col>
             <Col span={18}>
-              <span class="line "></span>
+              <span class={`line ${winningLineClass}`}></span>
 
               <CrossBoardComponent
                 counter={counter}
@@ -69,7 +80,11 @@ const GameBoardComponent = ({
                 className="FadeTab"
                 {...(true ? { timeout: 1000 } : {})}
               >
-                <Tag icon={<SyncOutlined spin />} color="white" style={{backgroundColor: "#181818"}}>
+                <Tag
+                  icon={<SyncOutlined spin />}
+                  color="white"
+                  style={{ backgroundColor: "#181818" }}
+                >
                   Player {counter % 2 === 0 ? "X" : "O"} Turn
                 </Tag>
               </Fade>
