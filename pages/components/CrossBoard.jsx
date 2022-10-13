@@ -1,6 +1,5 @@
-import { styled } from "@mui/material/styles";
 import { Grid, Paper } from "@mui/material";
-import { CloseOutlined, RadioButtonUnchecked } from "@mui/icons-material";
+import { styled } from "@mui/material/styles";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -46,12 +45,9 @@ const CrossBoardComponent = ({ counter, responses, populateBoard }) => {
               {responses?.[index] ? (
                 <Item>
                   {responses?.[index] === "x" ? (
-                    <CloseOutlined fontSize="large" className="PlayIconX" />
+                    <img src="/x.svg" className="PlayIconX" />
                   ) : (
-                    <RadioButtonUnchecked
-                      fontSize="large"
-                      className="PlayIconO"
-                    />
+                    <img src="/o.svg" className="PlayIconO" />
                   )}
                 </Item>
               ) : (
