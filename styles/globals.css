@@ -365,6 +365,7 @@ a {
     width: 250px;
     letter-spacing: 2px;
     font-size: 1.2em;
+    padding-top: 5px;
   }
 
   .linear-title {
