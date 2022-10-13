@@ -82,9 +82,9 @@ export default function TicTacToe() {
     <div className="App">
       <Backdrop
         open={backdropState}
-        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        sx={{  zIndex: (theme) => theme.zIndex.drawer + 1 }}
       >
-        <Typography>Waiting for your friend to join</Typography>
+        <Typography variant="h3">Waiting for your friend to join</Typography>
         {/* <CircularProgress color="inherit" /> */}
       </Backdrop>
 
