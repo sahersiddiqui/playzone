@@ -15,11 +15,13 @@ const GameBoardComponent = ({
   populateBoard,
   winnerDeclared,
   winnerIndex,
+  winnerTeam,
 }) => {
   const show = true;
   const { Content } = Layout;
 
   let winningLineClass = "";
+  let lineColor = "";
 
   if (winnerIndex === 0) winningLineClass = "t-horizontal-line";
   else if (winnerIndex === 1) winningLineClass = "m-horizontal-line";
@@ -29,6 +31,10 @@ const GameBoardComponent = ({
   else if (winnerIndex === 5) winningLineClass = "r-vertical-line";
   else if (winnerIndex === 6) winningLineClass = "r-diagonal-line";
   else if (winnerIndex === 7) winningLineClass = "diagonal-line";
+
+  if (winnerTeam == "x") lineColor = "#ff00b1";
+  else if (winnerTeam == "o") lineColor = "#00cabc";
+
   return (
     <>
       <Content className="GameBoard">
@@ -42,7 +48,10 @@ const GameBoardComponent = ({
             </Col>
             <Col span={3}></Col>
             <Col span={18}>
-              <span class={`line ${winningLineClass}`}></span>
+              <span
+                class={`line ${winningLineClass}`}
+                style={{ borderColor: lineColor }}
+              ></span>
 
               <CrossBoardComponent
                 counter={counter}
@@ -83,7 +92,10 @@ const GameBoardComponent = ({
                 <Tag
                   icon={<SyncOutlined spin />}
                   color="white"
-                  style={{ backgroundColor: "#181818" }}
+                  style={{
+                    backgroundColor: "#181818",
+                    color: counter % 2 === 0 ? "#ff5db1" : "#00c2bb",
+                  }}
                 >
                   Player {counter % 2 === 0 ? "X" : "O"} Turn
                 </Tag>
