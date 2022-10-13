@@ -31,6 +31,8 @@ const GameBoardComponent = ({
             </Col>
             <Col span={3}></Col>
             <Col span={18}>
+              <span class="line "></span>
+
               <CrossBoardComponent
                 counter={counter}
                 responses={responses}

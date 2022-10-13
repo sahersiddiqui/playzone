@@ -60,7 +60,7 @@ a {
   -webkit-text-fill-color: transparent;
 }
 
-.HomeActions > .ant-col {
+.HomeActions>.ant-col {
   display: flex;
   padding-bottom: 5%;
   align-items: center;
@@ -124,13 +124,77 @@ a {
   /* border-radius: 5px; */
   display: flex;
   justify-content: center;
+  position: relative;
+
   /* align-items: center; */
   /* margin: auto; */
   /* margin-top: 12%; */
   /* margin-bottom: 12%; */
 }
 
-.GameBoard > div {
+.line{
+  border-top: 2px solid black;
+  position: absolute;
+  box-sizing: border-box;
+  z-index: 1;
+
+}
+
+.diagonal-line {
+  width: calc(108%) !important;
+  transform: rotate(-33.5deg);
+  transform-origin: bottom left;
+  bottom: 17px;
+  left: 25px;
+}
+.r-diagonal-line {
+  width: calc(108%) !important;
+  transform: rotate(33.5deg);
+  transform-origin: bottom right;
+  bottom: 17px;
+  right: 25px;
+}
+.l-vertical-line {
+  width: calc(66%) !important;
+  transform: rotate(-90deg);
+  transform-origin: bottom left;
+  bottom: 0px;
+  left: 16%;
+}
+.m-vertical-line {
+  width: calc(66%) !important;
+  transform: rotate(-90deg);
+  transform-origin: bottom left;
+  bottom: 0px;
+  left: 50%;
+}
+.r-vertical-line {
+  width: calc(66%) !important;
+  transform: rotate(-90deg);
+  transform-origin: bottom left;
+  bottom: 0px;
+  left: 83%;
+}
+.t-horizontal-line {
+  width: calc(100%) !important;
+  transform-origin: top left;
+  top: 15%;
+  left: 0%;
+}
+.m-horizontal-line {
+  width: calc(100%) !important;
+  transform-origin: top left;
+  top: 50%;
+  left: 0%;
+}
+.b-horizontal-line {
+  width: calc(100%) !important;
+  transform-origin: top left;
+  top: 85%;
+  left: 0%;
+}
+
+.GameBoard>div {
   width: 75%;
   background-color: #f0f2f5;
   padding: 10px;
@@ -151,7 +215,7 @@ a {
   margin-bottom: 30px;
 }
 
-.AnalyticsBoard > div {
+.AnalyticsBoard>div {
   width: 75%;
   min-height: 30vh;
   background-color: #f0f2f5;
@@ -172,7 +236,7 @@ a {
   margin-bottom: 12%; */
 }
 
-.WinnerBoard > div {
+.WinnerBoard>div {
   width: 75%;
   background-color: #f0f2f5;
   padding: 5%;
@@ -194,7 +258,7 @@ a {
   flex-direction: column;
 }
 
-.notes > div {
+.notes>div {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -387,7 +451,7 @@ a {
 }
 
 @media screen and (max-width: 991px) {
-  .AnalyticsBoard > div > div {
+  .AnalyticsBoard>div>div {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -400,7 +464,7 @@ a {
     flex-direction: column;
   }
 
-  .notes > div {
+  .notes>div {
     padding: 0;
     align-items: center;
   }
