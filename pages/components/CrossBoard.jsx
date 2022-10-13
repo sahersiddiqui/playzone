@@ -45,9 +45,9 @@ const CrossBoardComponent = ({ counter, responses, populateBoard }) => {
               {responses?.[index] ? (
                 <Item>
                   {responses?.[index] === "x" ? (
-                    <img src="/x.svg" className="PlayIconX" />
+                    <img src="/images/x.svg" className="PlayIconX" />
                   ) : (
-                    <img src="/o.svg" className="PlayIconO" />
+                    <img src="/images/o.svg" className="PlayIconO" />
                   )}
                 </Item>
               ) : (
