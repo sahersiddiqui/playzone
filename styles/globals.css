@@ -54,6 +54,7 @@ a {
 }
 
 .PlayButton:hover {
+  border-color: #a664d3;
   background: -webkit-linear-gradient(#ff63b7, #03a9f4);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
