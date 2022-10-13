@@ -5,7 +5,7 @@ const HeaderComponent = () => {
   const { Header } = Layout;
 
   return (
-    <Header>
+    <Header style={{ backgroundColor: "#181818" }}>
       <h1 className="AppHeader">
         <GamepadOutlined fontSize="large" />
         &nbsp; Play Zone

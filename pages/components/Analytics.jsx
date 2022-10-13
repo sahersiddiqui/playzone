@@ -19,7 +19,7 @@ const AnalyticsComponent = ({
             <div>
               <h1>
                 <DashboardTwoTone size={"large"} />
-                &nbsp;&nbsp;Game Stats
+                &nbsp;&nbsp;Statics
               </h1>
               <span>
                 <Progress
@@ -50,8 +50,8 @@ const AnalyticsComponent = ({
           <Col xs={24} lg={12}>
             <div className="notes">
               <h1>
+                Notes&nbsp;&nbsp;
                 <ProfileTwoTone size={"large"} />
-                &nbsp;&nbsp;Notes
               </h1>
               <div>
                 <div>

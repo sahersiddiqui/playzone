@@ -2,7 +2,7 @@ import { Fade } from "@mui/material";
 import { Col, Layout, Row, Tag } from "antd";
 import CrossBoardComponent from "./CrossBoard";
 import {
-  AppstoreTwoTone,
+  AppstoreOutlined,
   CheckCircleOutlined,
   ExclamationCircleOutlined,
   SyncOutlined,
@@ -21,11 +21,11 @@ const GameBoardComponent = ({
   return (
     <>
       <Content className="GameBoard">
-        <div>
+        <div className="darkThemeLight">
           <Row>
             <Col span={24}>
-              <h1 className="Heading" style={{ marginBottom: 0 }}>
-                <AppstoreTwoTone size={"large"} />
+              <h1 className="Heading">
+                <AppstoreOutlined className="appIcon" />
                 &nbsp;&nbsp;Tic Tac Toe
               </h1>
             </Col>
@@ -67,7 +67,7 @@ const GameBoardComponent = ({
                 className="FadeTab"
                 {...(true ? { timeout: 1000 } : {})}
               >
-                <Tag icon={<SyncOutlined spin />} color="processing">
+                <Tag icon={<SyncOutlined spin />} color="white" style={{backgroundColor: "#181818"}}>
                   Player {counter % 2 === 0 ? "X" : "O"} Turn
                 </Tag>
               </Fade>

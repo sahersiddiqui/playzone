@@ -68,6 +68,7 @@ a {
 }
 
 .App {
+  background-color: #090909;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -118,6 +119,14 @@ a {
   text-align: right;
 }
 
+.darkThemeLight {
+  background-color: #181818 !important;
+}
+
+.darkThemeDark {
+  background-color: #090909 !important;
+}
+
 .GameBoard {
   height: auto;
   min-height: 40vh !important;
@@ -138,8 +147,10 @@ a {
 }
 
 .GameBoard .Heading {
+  margin-bottom: 0;
+  color: #fff;
   padding: 5%;
-  font-size: 2em;
+  font-size: 2.2em;
   display: flex;
   align-items: center;
 }
@@ -224,8 +235,13 @@ a {
   height: 5em !important;
 }
 
+.appIcon {
+  color: #fff;
+  font-size: 1.4em;
+}
+
 .PlayIconBlank {
-  cursor: Pointer;
+  background-color: #181818 !important;
 }
 
 .NoteText {
@@ -249,7 +265,7 @@ a {
   font-size: 0.9rem !important;
   border-radius: 4px !important;
   transform-origin: 0 0 0;
-  border: 1px solid #03a9f4 !important;
+  border: 1px solid #f9f9f9 !important;
 }
 
 .FadeTabOver {
@@ -328,6 +344,7 @@ a {
 
   .AnalyticsBoard {
     margin-bottom: 50px;
+    background-color: #181818;
   }
 
   .TurnColumn {
@@ -371,6 +388,10 @@ a {
 
   .linear-title {
     padding-top: 10%;
+  }
+
+  .appIcon {
+    font-size: 1em;
   }
 }
 
