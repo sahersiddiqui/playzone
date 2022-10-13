@@ -5,7 +5,7 @@ const FooterComponent = () => {
   const { Footer } = Layout;
 
   return (
-    <Footer>
+    <Footer style={{ backgroundColor: "#181818" }}>
       <Row className="AppFooter">
         <Col xs={24} sm={12} className="RightsText">
           <CopyrightCircleOutlined size={"small"} />
