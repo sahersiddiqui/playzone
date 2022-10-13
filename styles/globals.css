@@ -421,6 +421,68 @@ a {
   }
 }
 
+@media screen and (max-width: 1024px) {
+  .l-vertical-line {
+    width: calc(123%) !important;
+  }
+
+  .m-vertical-line {
+    width: calc(123%) !important;
+  }
+
+  .r-vertical-line {
+    width: calc(123%) !important;
+  }
+
+}
+
+@media screen and (max-width: 991px) {
+  .AnalyticsBoard>div>div {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 50px;
+  }
+
+  .notes {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .notes>div {
+    padding: 0;
+    align-items: center;
+  }
+
+  .l-vertical-line {
+    width: calc(165%) !important;
+  }
+
+  .m-vertical-line {
+    width: calc(165%) !important;
+  }
+
+  .r-vertical-line {
+    width: calc(165%) !important;
+  }
+
+
+}
+
+@media screen and (max-width: 800px) {
+  .MuiTableContainer-root {
+    width: 80% !important;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .MuiTableContainer-root {
+    width: 90% !important;
+  }
+}
+
+
 @media screen and (max-width: 575px) {
   .GameBoard {
     margin: 10% 0%;
@@ -486,6 +548,39 @@ a {
 
 
   .diagonal-line {
+    width: calc(112%) !important;
+    transform: rotate(-43deg);
+    bottom: 4%;
+    left: 11%;
+  }
+
+  .r-diagonal-line {
+    width: calc(112%) !important;
+    transform: rotate(43deg);
+    bottom: 4%;
+    right: 10%;
+  }
+
+  .l-vertical-line {
+    width: calc(83%) !important;
+  }
+
+  .m-vertical-line {
+    width: calc(83%) !important;
+  }
+
+  .r-vertical-line {
+    width: calc(83%) !important;
+  }
+
+
+  /* winning cut line css */
+
+
+}
+
+@media screen and (max-width: 375px) {
+  .diagonal-line {
     width: calc(118%) !important;
     transform: rotate(-43deg);
     bottom: 7%;
@@ -500,50 +595,14 @@ a {
   }
 
   .l-vertical-line {
-    width: calc(95%) !important;
+    width: calc(96%) !important;
   }
 
   .m-vertical-line {
-    width: calc(95%) !important;
+    width: calc(96%) !important;
   }
 
   .r-vertical-line {
-    width: calc(95%) !important;
-  }
-
-  /* winning cut line css */
-
-
-}
-
-@media screen and (max-width: 600px) {
-  .MuiTableContainer-root {
-    width: 90% !important;
-  }
-}
-
-@media screen and (max-width: 800px) {
-  .MuiTableContainer-root {
-    width: 80% !important;
-  }
-}
-
-@media screen and (max-width: 991px) {
-  .AnalyticsBoard>div>div {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    margin-bottom: 50px;
-  }
-
-  .notes {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-
-  .notes>div {
-    padding: 0;
-    align-items: center;
+    width: calc(96%) !important;
   }
 }
