@@ -22,9 +22,9 @@
 }
 
 .tableContainer {
-  margin: 3% auto;
-  width: 50%;
-  background-color: #212121;
+  margin: 3% auto !important;
+  width: 50% !important;
+  background-color: #212121 !important;
 }
 
 .hiddenBoard {
