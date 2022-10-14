@@ -1,6 +1,7 @@
 import WinnerBoardComponent from "./WinnerBoard";
 import { Col, Layout, Progress, Row } from "antd";
 import { DashboardOutlined, ProfileOutlined } from "@ant-design/icons";
+import { Hidden } from "@mui/material";
 
 const AnalyticsComponent = ({
   counter,
@@ -51,8 +52,13 @@ const AnalyticsComponent = ({
           <Col xs={24} lg={12}>
             <div className="notes">
               <h1 style={{ color: "#fff" }}>
-                Notes&nbsp;&nbsp;
-                <ProfileOutlined className="appIcon" />
+                <Hidden mdUp>
+                  <ProfileOutlined className="appIcon" />
+                </Hidden>
+                &nbsp;&nbsp;Notes&nbsp;&nbsp;
+                <Hidden mdDown>
+                  <ProfileOutlined className="appIcon" />
+                </Hidden>
               </h1>
               <div>
                 <div>
