@@ -1,4 +1,5 @@
-import { Fade } from "@mui/material";
+import { Fade, Button, Tooltip } from "@mui/material";
+import RefreshIcon from "@mui/icons-material/Refresh";
 import { Col, Layout, Row, Tag } from "antd";
 import CrossBoardComponent from "./CrossBoard";
 import {
@@ -16,6 +17,7 @@ const GameBoardComponent = ({
   winnerDeclared,
   winnerIndex,
   winnerTeam,
+  resetMatch,
 }) => {
   const show = true;
   const { Content } = Layout;
@@ -66,7 +68,7 @@ const GameBoardComponent = ({
       </Content>
       <Row
         style={{
-          width: "75%",
+          // width: "75%",
           margin: "auto",
           textAlign: "center",
           justifyContent: "center",
@@ -107,6 +109,18 @@ const GameBoardComponent = ({
                 <Tag icon={<CheckCircleOutlined />} color="success">
                   Game Finished
                 </Tag>
+              </Fade>
+              <Fade in={true} className="FadeTabOver resetIcon">
+                <Tooltip title="Restart Game" placement="top">
+                  <Button
+                    aria-label="reload game"
+                    onClick={resetMatch}
+                    color="primary"
+                    variant="contained"
+                  >
+                    <RefreshIcon />
+                  </Button>
+                </Tooltip>
               </Fade>
             </>
           )}

@@ -112,6 +112,7 @@ export default function TicTacToe() {
             winnerDeclared={winnerDeclared}
             winnerIndex={winnerIndex}
             winnerTeam={winnerTeam}
+            resetMatch={resetMatch}
           />
         </Col>
         <Col xs={24} sm={12}>

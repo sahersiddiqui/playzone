@@ -374,6 +374,11 @@ a {
   border: 0 !important;
 }
 
+.resetIcon {
+  min-width: auto;
+  padding: 1.7% 1.6% !important;
+}
+
 .linear-title {
   width: 40%;
   position: relative;
