@@ -15,7 +15,10 @@ const connectionOptions = {
   "force new connection": true,
   reconnectionAttempts: "Infinity",
 };
-const socket = io.connect("http://localhost:4000", connectionOptions);
+const socket = io.connect(
+  "https://playzone-server.herokuapp.com",
+  connectionOptions
+);
 
 export default function TicTacToe() {
   const router = useRouter();
@@ -25,8 +28,7 @@ export default function TicTacToe() {
   let flag = 0;
   const [room, setRoom] = useState("");
 
-  // // Messages States
-  // const [message, setMessage] = useState([]);
+  // Messages States
   const [errorMesg, setErrorMesg] = useState("");
   const [username, setUsername] = useState(
     `player_${Math.random().toString(36).slice(8)}`
@@ -37,7 +39,6 @@ export default function TicTacToe() {
   const [responses, setResponses] = useState([]);
   const [winnerTeam, setWinnerTeam] = useState("_");
   const [isMatchTie, setIsMatchTie] = useState(false);
-  const [opponentJoin, setOpponentJoin] = useState(false);
   const [backdropState, setBackdropState] = useState(true);
   const [winnerDeclared, setWinnerDeclared] = useState(false);
   const [showResponseBar, setShowResponseBar] = useState(false);
@@ -88,13 +89,6 @@ export default function TicTacToe() {
       if (initMove === value) setBackdropState(true);
       else setBackdropState(false);
 
-      // if (
-      //   (counter % 2 === 0 && value == "x") ||
-      //   (counter % 2 !== 0 && value == "o")
-      // )
-      //   setBackdropState(true);
-      // else setBackdropState(false);
-
       responses[index] = value;
       setResponses(responses);
       checkWinner(value);
@@ -102,11 +96,9 @@ export default function TicTacToe() {
 
     // Handle game board enable/disable scenario
     socket.on(`enable_gameboard`, () => {
-      setOpponentJoin(true);
       setBackdropState(false);
     });
     socket.on(`disable_gameboard`, () => {
-      setOpponentJoin(false);
       setBackdropState(true);
     });
     socket.on(`back_to_home`, () => {
@@ -115,9 +107,6 @@ export default function TicTacToe() {
   });
 
   useEffect(() => {
-    // if (opponentJoin && counter % 2 === 0) setBackdropState(false);
-    // else setBackdropState(true);
-
     if (winnerDeclared || isMatchTie) {
       // scroll to bottom every time states (winnerDeclared, isMatchTie) change
       bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -131,7 +120,6 @@ export default function TicTacToe() {
 
   const sendPlayerMove = (payload) => {
     if (!errorMesg) socket.emit("send_player_move", payload);
-    // setCurrMesg({ user: "", mesg: "" });
   };
 
   const handleCloseResponseMesg = () => {
@@ -151,11 +139,7 @@ export default function TicTacToe() {
     if (winnerDeclared) return;
 
     if (!initMove) setInitMove(value);
-
-    // setBackdropState(true);
     sendPlayerMove({ data: { index, value }, room: room });
-    // responses[index] = value;
-    // checkWinner(value);
   };
 
   const checkWinner = (value) => {
