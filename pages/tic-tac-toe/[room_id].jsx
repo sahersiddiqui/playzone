@@ -33,6 +33,7 @@ export default function TicTacToe() {
   );
 
   const [counter, setCounter] = useState(0);
+  const [initMove, setInitMove] = useState(null);
   const [responses, setResponses] = useState([]);
   const [winnerTeam, setWinnerTeam] = useState("_");
   const [isMatchTie, setIsMatchTie] = useState(false);
@@ -82,10 +83,17 @@ export default function TicTacToe() {
   useEffect(() => {
     // Receiving data from server
     socket.on(`broadcast_move`, (data) => {
-      debugger;
-
       const { index, value } = data;
-      if (counter % 2 === 0 && value == "x") setBackdropState(false);
+
+      if (initMove === value) setBackdropState(true);
+      else setBackdropState(false);
+
+      // if (
+      //   (counter % 2 === 0 && value == "x") ||
+      //   (counter % 2 !== 0 && value == "o")
+      // )
+      //   setBackdropState(true);
+      // else setBackdropState(false);
 
       responses[index] = value;
       setResponses(responses);
@@ -141,7 +149,10 @@ export default function TicTacToe() {
 
   const populateBoard = (index, value) => {
     if (winnerDeclared) return;
-    setBackdropState(true);
+
+    if (!initMove && !counter) setInitMove(value);
+
+    // setBackdropState(true);
     sendPlayerMove({ data: { index, value }, room: room });
     // responses[index] = value;
     // checkWinner(value);
