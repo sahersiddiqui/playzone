@@ -150,7 +150,7 @@ export default function TicTacToe() {
   const populateBoard = (index, value) => {
     if (winnerDeclared) return;
 
-    if (!initMove && !counter) setInitMove(value);
+    if (!initMove) setInitMove(value);
 
     // setBackdropState(true);
     sendPlayerMove({ data: { index, value }, room: room });

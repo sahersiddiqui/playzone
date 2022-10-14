@@ -4,7 +4,6 @@ function GameRoomIndex() {
   const router = useRouter();
   const { game_room } = router.query;
   console.log(game_room);
-  debugger;
 
   return <>Hello Dude! This is game room index.</>;
 }
