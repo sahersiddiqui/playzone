@@ -82,6 +82,18 @@ const GameBoardComponent = ({
                   Match Draw
                 </Tag>
               </Fade>
+              <Fade in={true} className="FadeTabOver resetIcon">
+                <Tooltip title="Restart Game" placement="top">
+                  <Button
+                    aria-label="reload game"
+                    onClick={resetMatch}
+                    color="primary"
+                    variant="contained"
+                  >
+                    <RefreshIcon />
+                  </Button>
+                </Tooltip>
+              </Fade>
             </>
           ) : !winnerDeclared ? (
             <>
