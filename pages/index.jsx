@@ -179,7 +179,7 @@ function App() {
           <TableBody>
             {fields.map((item, index) => {
               return (
-                <TableRow style={{ height: "100px" }}>
+                <TableRow style={{ height: "100px" }} key={`outer_${index}`}>
                   {item.map((innerItem, innerIndex) => {
                     let border = "0 0 0 0";
                     if (index === 0 && innerIndex === 1)
@@ -198,6 +198,7 @@ function App() {
                         {responses[index][innerIndex] ? (
                           <>
                             <TableCell
+                              key={`inner_${index}_${innerIndex}`}
                               style={{
                                 borderWidth: border,
                                 borderColor: "whitesmoke",
@@ -338,7 +339,10 @@ function App() {
         <Alert severity="info" variant="filled" style={{ textAlign: "left" }}>
           Current version (v1) might not declare winner player specifically.
           Please try latest version&nbsp;
-          <a href="" style={{ color: "yellow", textDecoration: "none" }}>
+          <a
+            href="https://tictactoe-playzone.vercel.app/"
+            style={{ color: "yellow", textDecoration: "none" }}
+          >
             here
           </a>
           &nbsp;to enjoy.

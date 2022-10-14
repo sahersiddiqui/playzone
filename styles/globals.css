@@ -34,7 +34,7 @@
 
 .bgArea {
   height: 130px;
-  background-image: linear-gradient(to bottom, transparent, #fff);
+  background-image: linear-gradient(to bottom, transparent, #090909);
 }
 
 @media screen and (max-width: 575px) {
