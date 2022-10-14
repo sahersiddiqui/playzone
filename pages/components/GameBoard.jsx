@@ -51,7 +51,7 @@ const GameBoardComponent = ({
             <Col span={3}></Col>
             <Col span={18}>
               <span
-                class={`line ${winningLineClass}`}
+                className={`line ${winningLineClass}`}
                 style={{ borderColor: lineColor }}
               ></span>
 

@@ -1,20 +1,46 @@
 import { Col, Row } from "antd";
+import io from "socket.io-client";
+import { useRouter } from "next/router";
 import HeaderComponent from "../components/Header";
 import FooterComponent from "../components/Footer";
-import { Backdrop, Typography } from "@mui/material";
 import GameBoardComponent from "../components/GameBoard";
 import AnalyticsComponent from "../components/Analytics";
 import ResultBarComponent from "../components/ResultBar";
 import React, { useEffect, useRef, useState } from "react";
+import { Backdrop, CircularProgress, Typography } from "@mui/material";
+
+const connectionOptions = {
+  timeout: 10000,
+  transports: ["websocket"],
+  "force new connection": true,
+  reconnectionAttempts: "Infinity",
+};
+const socket = io.connect("http://localhost:4000", connectionOptions);
 
 export default function TicTacToe() {
+  const router = useRouter();
+  const { game_room } = router.query;
+
+  // Room State
+  let flag = 0;
+  const [room, setRoom] = useState("");
+
+  // // Messages States
+  // const [message, setMessage] = useState([]);
+  const [errorMesg, setErrorMesg] = useState("");
+  const [username, setUsername] = useState(
+    `player_${Math.random().toString(36).slice(8)}`
+  );
+
   const [counter, setCounter] = useState(0);
   const [responses, setResponses] = useState([]);
   const [winnerTeam, setWinnerTeam] = useState("_");
   const [isMatchTie, setIsMatchTie] = useState(false);
+  const [opponentJoin, setOpponentJoin] = useState(false);
   const [backdropState, setBackdropState] = useState(true);
   const [winnerDeclared, setWinnerDeclared] = useState(false);
   const [showResponseBar, setShowResponseBar] = useState(false);
+  // const [currMesg, setCurrMesg] = useState({ user: "", mesg: "" });
 
   const winningConditions = [
     // Horizontal
@@ -35,6 +61,55 @@ export default function TicTacToe() {
   const bottomRef = useRef(null);
 
   useEffect(() => {
+    let room_id = game_room
+      ? game_room
+      : window.location.href.split("/").reverse().filter(Boolean)[0];
+
+    setRoom(room_id);
+
+    // Letting user join the room only once
+    if (room_id && flag < 1) {
+      flag++;
+      socket.emit("join_room", { room_id, username });
+    }
+
+    // Room users max limit reach exception handling
+    socket.on("join_room_error", (data) => {
+      if (!data) setErrorMesg("Play room is full!");
+    });
+  }, []);
+
+  useEffect(() => {
+    // Receiving data from server
+    socket.on(`broadcast_move`, (data) => {
+      debugger;
+
+      const { index, value } = data;
+      if (counter % 2 === 0 && value == "x") setBackdropState(false);
+
+      responses[index] = value;
+      setResponses(responses);
+      checkWinner(value);
+    });
+
+    // Handle game board enable/disable scenario
+    socket.on(`enable_gameboard`, () => {
+      setOpponentJoin(true);
+      setBackdropState(false);
+    });
+    socket.on(`disable_gameboard`, () => {
+      setOpponentJoin(false);
+      setBackdropState(true);
+    });
+    socket.on(`back_to_home`, () => {
+      router.push("tic-tac-toe");
+    });
+  });
+
+  useEffect(() => {
+    // if (opponentJoin && counter % 2 === 0) setBackdropState(false);
+    // else setBackdropState(true);
+
     if (winnerDeclared || isMatchTie) {
       // scroll to bottom every time states (winnerDeclared, isMatchTie) change
       bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -45,6 +120,11 @@ export default function TicTacToe() {
       setShowResponseBar(true);
     }
   }, [counter, winnerDeclared, isMatchTie]);
+
+  const sendPlayerMove = (payload) => {
+    if (!errorMesg) socket.emit("send_player_move", payload);
+    // setCurrMesg({ user: "", mesg: "" });
+  };
 
   const handleCloseResponseMesg = () => {
     setShowResponseBar(false);
@@ -61,9 +141,10 @@ export default function TicTacToe() {
 
   const populateBoard = (index, value) => {
     if (winnerDeclared) return;
-    responses[index] = value;
-    setResponses(responses);
-    checkWinner(value);
+    setBackdropState(true);
+    sendPlayerMove({ data: { index, value }, room: room });
+    // responses[index] = value;
+    // checkWinner(value);
   };
 
   const checkWinner = (value) => {
@@ -84,8 +165,8 @@ export default function TicTacToe() {
         open={backdropState}
         sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
       >
-        <Typography variant="h3">Waiting for your friend to join</Typography>
-        {/* <CircularProgress color="inherit" /> */}
+        <Typography variant="h4">Waiting for your friend to join</Typography>
+        <CircularProgress color="info" />
       </Backdrop>
 
       <ResultBarComponent
