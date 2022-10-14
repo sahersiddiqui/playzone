@@ -43,9 +43,9 @@ const CrossBoardComponent = ({ counter, responses, populateBoard }) => {
               }}
               key={index}
             >
-              {responses?.[index] ? (
+              {responses[index] ? (
                 <Item>
-                  {responses?.[index] === "x" ? (
+                  {responses[index] === "x" ? (
                     <CloseOutlined fontSize="large" className="PlayIconX" />
                   ) : (
                     <RadioButtonUnchecked

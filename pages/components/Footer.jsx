@@ -1,4 +1,4 @@
-import { Col, Layout, Row } from "antd";
+import { Layout } from "antd";
 import { CopyrightCircleOutlined, HeartFilled } from "@ant-design/icons";
 
 const FooterComponent = () => {
@@ -6,30 +6,20 @@ const FooterComponent = () => {
 
   return (
     <Footer>
-      <Row className="AppFooter">
-        <Col xs={24} sm={12} className="RightsText">
-          <CopyrightCircleOutlined size={"small"} />
-          &nbsp;{new Date().getFullYear()}. All rights reserved.
-        </Col>
-        <Col xs={24} sm={12} className="CreditsText">
+      <div className="AppFooter">
+        <CopyrightCircleOutlined size={"small"} />
+        &nbsp;{new Date().getFullYear()}. All rights reserved.
+        <div>
           &nbsp;Made with <HeartFilled className="FooterHeart" /> by&nbsp;
-          <a
-            target="_blank"
-            rel="noreferrer"
-            href="https://shivamv12.github.io/"
-          >
+          <a href="https://shivamv12.github.io/" target="_blank">
             Shivam
           </a>
           &nbsp;&amp;&nbsp;
-          <a
-            target="_blank"
-            rel="noreferrer"
-            href="https://sahersiddiqui.github.io/"
-          >
+          <a href="https://sahersiddiqui.github.io/" target="_blank">
             Saher
           </a>
-        </Col>
-      </Row>
+        </div>
+      </div>
     </Footer>
   );
 };
