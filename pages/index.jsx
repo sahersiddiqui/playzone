@@ -268,18 +268,18 @@ function App() {
                 style={{ color: "whitesmoke" }}
               >
                 <br />
-                <span style={{ color: "brown" }}>*</span>
+                <span style={{ color: "red" }}>*</span>
                 <span>Game starts with player X</span>
                 <br />
                 <span>
-                  <span style={{ color: "brown" }}>*</span>
+                  <span style={{ color: "red" }}>*</span>
                   Game starts by just tap on box
                 </span>
                 <br />
                 <span>
                   wanna&nbsp;
                   <spna
-                    style={{ color: "brown", cursor: "Pointer" }}
+                    style={{ color: "red", cursor: "Pointer" }}
                     onClick={() => resetMatch()}
                   >
                     reset the match
