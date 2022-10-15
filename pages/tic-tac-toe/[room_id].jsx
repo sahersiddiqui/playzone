@@ -15,10 +15,7 @@ const connectionOptions = {
   "force new connection": true,
   reconnectionAttempts: "Infinity",
 };
-const socket = io.connect(
-  "https://playzone-server.herokuapp.com",
-  connectionOptions
-);
+const socket = io.connect("http://localhost:4000", connectionOptions);
 
 export default function TicTacToe() {
   const router = useRouter();
@@ -70,7 +67,7 @@ export default function TicTacToe() {
     setRoom(room_id);
 
     // Letting user join the room only once
-    if (room_id && flag < 1) {
+    if (room_id && room_id !== "tic-tac-toe" && flag < 1) {
       flag++;
       socket.emit("join_room", { room_id, username });
     }
@@ -86,12 +83,22 @@ export default function TicTacToe() {
     socket.on(`broadcast_move`, (data) => {
       const { index, value } = data;
 
-      if (initMove === value) setBackdropState(true);
+      if (initMove === value && !isMatchTie) setBackdropState(true);
       else setBackdropState(false);
 
       responses[index] = value;
       setResponses(responses);
       checkWinner(value);
+    });
+
+    // Handle reset match request
+    socket.on(`reset_match`, () => {
+      setCounter(0);
+      setResponses([]);
+      setWinnerTeam("_");
+      setIsMatchTie(false);
+      setWinnerDeclared(false);
+      topRef.current?.scrollIntoView({ behavior: "smooth" });
     });
 
     // Handle game board enable/disable scenario
@@ -114,6 +121,7 @@ export default function TicTacToe() {
 
     if (counter === 9 && !winnerDeclared) {
       setIsMatchTie(true);
+      setBackdropState(false);
       setShowResponseBar(true);
     }
   }, [counter, winnerDeclared, isMatchTie]);
@@ -127,12 +135,13 @@ export default function TicTacToe() {
   };
 
   const resetMatch = () => {
-    setCounter(0);
-    setResponses([]);
-    setWinnerTeam("_");
-    setIsMatchTie(false);
-    setWinnerDeclared(false);
-    topRef.current?.scrollIntoView({ behavior: "smooth" });
+    // setCounter(0);
+    // setResponses([]);
+    // setWinnerTeam("_");
+    // setIsMatchTie(false);
+    // setWinnerDeclared(false);
+    socket.emit("request_reset_match", room);
+    // topRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   const populateBoard = (index, value) => {
@@ -149,6 +158,7 @@ export default function TicTacToe() {
       if (condRes) {
         setWinnerTeam(value);
         setWinnerDeclared(true);
+        setBackdropState(false);
         setShowResponseBar(true);
       }
     });
@@ -160,8 +170,27 @@ export default function TicTacToe() {
         open={backdropState}
         sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
       >
-        <Typography variant="h4">Waiting for your friend to join</Typography>
-        <CircularProgress color="info" />
+        <Row>
+          {/* <Col md={24} xs={24}>
+            <Typography
+              variant="h6"
+              style={{ textAlign: "center", color: "whitesmoke" }}
+            >
+              Waiting for your friend to join
+            </Typography>
+          </Col>
+          <br /> */}
+          <Col
+            md={24}
+            xs={24}
+            style={{ marginTop: "20px", textAlign: "center" }}
+          >
+            <CircularProgress
+              // color="warning"
+              style={{ color: "#ff5db1 !important" }}
+            />
+          </Col>
+        </Row>
       </Backdrop>
 
       <ResultBarComponent
@@ -189,6 +218,9 @@ export default function TicTacToe() {
             counter={counter}
             responses={responses}
             isMatchTie={isMatchTie}
+            resetMatch={resetMatch}
+            // winnerTeam={winnerTeam}
+            // winnerIndex={winnerIndex}
             populateBoard={populateBoard}
             winnerDeclared={winnerDeclared}
           />

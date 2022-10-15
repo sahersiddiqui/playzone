@@ -86,7 +86,7 @@ const GameBoardComponent = ({
                 <Tooltip title="Restart Game" placement="top">
                   <Button
                     aria-label="reload game"
-                    onClick={resetMatch}
+                    onClick={() => resetMatch()}
                     color="primary"
                     variant="contained"
                   >
@@ -126,7 +126,7 @@ const GameBoardComponent = ({
                 <Tooltip title="Restart Game" placement="top">
                   <Button
                     aria-label="reload game"
-                    onClick={resetMatch}
+                    onClick={() => resetMatch()}
                     color="primary"
                     variant="contained"
                   >
