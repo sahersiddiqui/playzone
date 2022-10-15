@@ -171,16 +171,6 @@ export default function TicTacToe() {
 
   return (
     <div className="App">
-      <span style={{ color: "whitesmoke !important" }}>
-        Some Data:
-        {JSON.stringify({
-          counter,
-          responses,
-          winnerTeam,
-          isMatchTie,
-          winnerDeclared,
-        })}
-      </span>
       <Backdrop
         open={backdropState}
         sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
