@@ -102,6 +102,7 @@ export default function TicTacToe() {
       setIsMatchTie(false);
       setWinnerDeclared(false);
       topRef.current?.scrollIntoView({ behavior: "smooth" });
+      initMove === "x" ? setBackdropState(false) : setBackdropState(true);
     });
 
     // Handle game board enable/disable scenario
