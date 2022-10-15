@@ -15,7 +15,10 @@ const connectionOptions = {
   "force new connection": true,
   reconnectionAttempts: "Infinity",
 };
-const socket = io.connect("http://localhost:4000", connectionOptions);
+const socket = io.connect(
+  "https://playzone-server.herokuapp.com/",
+  connectionOptions
+);
 
 export default function TicTacToe() {
   const router = useRouter();
