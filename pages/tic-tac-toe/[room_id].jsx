@@ -15,7 +15,10 @@ const connectionOptions = {
   "force new connection": true,
   reconnectionAttempts: "Infinity",
 };
-const socket = io.connect("https://playzone-server.herokuapp.com/", connectionOptions);
+const socket = io.connect(
+  "https://playzone-server.herokuapp.com/",
+  connectionOptions
+);
 
 export default function TicTacToe() {
   const router = useRouter();
@@ -81,8 +84,6 @@ export default function TicTacToe() {
   useEffect(() => {
     // Receiving data from server
     socket.on(`broadcast_move`, (data) => {
-      console.log("\n=========================");
-      console.log("Listening Moves: ", data);
       const { index, value } = data;
 
       if (initMove === value && !isMatchTie) setBackdropState(true);
@@ -95,20 +96,9 @@ export default function TicTacToe() {
 
     // Handle reset match request
     socket.on(`reset_match`, () => {
-      console.log("\n\n");
-      console.log("Inside the reset match callback: ");
-      console.log("Previous State: ");
-      console.log("Responses: ", responses);
-      console.log("WinnerTeam: ", winnerTeam);
-      console.log("winnerDeclared: ", winnerDeclared);
-      resetMatchStates();
-      // setCounter(0);
-      // setResponses([]);
-      // setWinnerTeam("_");
-      // setIsMatchTie(false);
-      // setWinnerDeclared(false);
-      // topRef.current?.scrollIntoView({ behavior: "smooth" });
-      initMove === "x" ? setBackdropState(false) : setBackdropState(true);
+      // resetMatchStates();
+      router.reload(window.location.pathname);
+      // initMove === "x" ? setBackdropState(false) : setBackdropState(true);
     });
 
     // Handle game board enable/disable scenario
@@ -154,15 +144,8 @@ export default function TicTacToe() {
   };
 
   const resetMatch = () => {
-    // setCounter(0);
-    resetMatchStates();
-    // setResponses([]);
-    // setWinnerTeam("_");
-    // setIsMatchTie(false);
-    // setWinnerDeclared(false);
-    console.log("\nTriggering the req to backend server:");
+    // resetMatchStates();
     socket.emit("request_reset_match", room);
-    // topRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   const populateBoard = (index, value) => {
@@ -173,13 +156,9 @@ export default function TicTacToe() {
   };
 
   const checkWinner = (value) => {
-    console.log("\nMove Value: ", value);
-    console.log("Responses: ", responses);
-
     setCounter(counter + 1);
     winningConditions.map((item) => {
       let condRes = item.every((elem) => responses[elem] === value);
-      console.log("Cond Check: ", condRes ? "true" : "false");
 
       if (condRes) {
         setWinnerTeam(value);
