@@ -15,10 +15,7 @@ const connectionOptions = {
   "force new connection": true,
   reconnectionAttempts: "Infinity",
 };
-const socket = io.connect(
-  "https://playzone-server.herokuapp.com/",
-  connectionOptions
-);
+const socket = io.connect("https://playzone-server.herokuapp.com/", connectionOptions);
 
 export default function TicTacToe() {
   const router = useRouter();
@@ -84,6 +81,8 @@ export default function TicTacToe() {
   useEffect(() => {
     // Receiving data from server
     socket.on(`broadcast_move`, (data) => {
+      console.log("\n=========================");
+      console.log("Listening Moves: ", data);
       const { index, value } = data;
 
       if (initMove === value && !isMatchTie) setBackdropState(true);
@@ -96,12 +95,19 @@ export default function TicTacToe() {
 
     // Handle reset match request
     socket.on(`reset_match`, () => {
-      setCounter(0);
-      setResponses([]);
-      setWinnerTeam("_");
-      setIsMatchTie(false);
-      setWinnerDeclared(false);
-      topRef.current?.scrollIntoView({ behavior: "smooth" });
+      console.log("\n\n");
+      console.log("Inside the reset match callback: ");
+      console.log("Previous State: ");
+      console.log("Responses: ", responses);
+      console.log("WinnerTeam: ", winnerTeam);
+      console.log("winnerDeclared: ", winnerDeclared);
+      resetMatchStates();
+      // setCounter(0);
+      // setResponses([]);
+      // setWinnerTeam("_");
+      // setIsMatchTie(false);
+      // setWinnerDeclared(false);
+      // topRef.current?.scrollIntoView({ behavior: "smooth" });
       initMove === "x" ? setBackdropState(false) : setBackdropState(true);
     });
 
@@ -138,12 +144,23 @@ export default function TicTacToe() {
     setShowResponseBar(false);
   };
 
+  const resetMatchStates = () => {
+    setCounter(0);
+    setResponses([]);
+    setWinnerTeam("_");
+    setIsMatchTie(false);
+    setWinnerDeclared(false);
+    topRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   const resetMatch = () => {
     // setCounter(0);
+    resetMatchStates();
     // setResponses([]);
     // setWinnerTeam("_");
     // setIsMatchTie(false);
     // setWinnerDeclared(false);
+    console.log("\nTriggering the req to backend server:");
     socket.emit("request_reset_match", room);
     // topRef.current?.scrollIntoView({ behavior: "smooth" });
   };
@@ -156,9 +173,14 @@ export default function TicTacToe() {
   };
 
   const checkWinner = (value) => {
+    console.log("\nMove Value: ", value);
+    console.log("Responses: ", responses);
+
     setCounter(counter + 1);
     winningConditions.map((item) => {
       let condRes = item.every((elem) => responses[elem] === value);
+      console.log("Cond Check: ", condRes ? "true" : "false");
+
       if (condRes) {
         setWinnerTeam(value);
         setWinnerDeclared(true);
@@ -170,6 +192,16 @@ export default function TicTacToe() {
 
   return (
     <div className="App">
+      <span style={{ color: "whitesmoke !important" }}>
+        Some Data:
+        {JSON.stringify({
+          counter,
+          responses,
+          winnerTeam,
+          isMatchTie,
+          winnerDeclared,
+        })}
+      </span>
       <Backdrop
         open={backdropState}
         sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
