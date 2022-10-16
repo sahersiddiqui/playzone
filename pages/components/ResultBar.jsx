@@ -5,6 +5,7 @@ const ResultBarComponent = ({
   type,
   responseMesg,
   showResponseBar,
+  autoHideDuration,
   handleCloseResponseMesg,
 }) => {
   return (
@@ -15,7 +16,7 @@ const ResultBarComponent = ({
           horizontal: "center",
         }}
         open={showResponseBar}
-        autoHideDuration={3000}
+        autoHideDuration={autoHideDuration}
         onClose={handleCloseResponseMesg}
         action={
           <IconButton

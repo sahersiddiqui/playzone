@@ -1,6 +1,7 @@
 import { Col, Row } from "antd";
 import io from "socket.io-client";
 import { useRouter } from "next/router";
+import MetaTag from "../components/MetaTag";
 import HeaderComponent from "../components/Header";
 import FooterComponent from "../components/Footer";
 import GameBoardComponent from "../components/GameBoard";
@@ -15,10 +16,7 @@ const connectionOptions = {
   "force new connection": true,
   reconnectionAttempts: "Infinity",
 };
-const socket = io.connect(
-  "https://playzone-server.herokuapp.com/",
-  connectionOptions
-);
+const socket = io.connect(process.env.BACKEND_SERVER, connectionOptions);
 
 export default function TicTacToe() {
   const router = useRouter();
@@ -39,6 +37,7 @@ export default function TicTacToe() {
   const [responses, setResponses] = useState([]);
   const [winnerTeam, setWinnerTeam] = useState("_");
   const [isMatchTie, setIsMatchTie] = useState(false);
+  const [showMesgBar, setShowMesgBar] = useState(true);
   const [backdropState, setBackdropState] = useState(true);
   const [winnerDeclared, setWinnerDeclared] = useState(false);
   const [showResponseBar, setShowResponseBar] = useState(false);
@@ -97,13 +96,17 @@ export default function TicTacToe() {
     // Handle reset match request
     socket.on(`reset_match`, () => {
       // resetMatchStates();
-      router.reload(window.location.pathname);
+      window.location.reload();
+      // router.reload(window.location.pathname);
       // initMove === "x" ? setBackdropState(false) : setBackdropState(true);
     });
 
     // Handle game board enable/disable scenario
     socket.on(`enable_gameboard`, () => {
       setBackdropState(false);
+    });
+    socket.on(`close_mesg_bar`, () => {
+      setShowMesgBar(false);
     });
     socket.on(`disable_gameboard`, () => {
       setBackdropState(true);
@@ -171,6 +174,14 @@ export default function TicTacToe() {
 
   return (
     <div className="App">
+      <MetaTag />
+      <ResultBarComponent
+        type={"info"}
+        autoHideDuration={null}
+        showResponseBar={showMesgBar}
+        handleCloseResponseMesg={() => setShowMesgBar(false)}
+        responseMesg={"Share this url with your friend & ask them to join."}
+      />
       <Backdrop
         open={backdropState}
         sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
@@ -199,6 +210,7 @@ export default function TicTacToe() {
       </Backdrop>
 
       <ResultBarComponent
+        autoHideDuration={3000}
         showResponseBar={showResponseBar}
         responseMesg={
           isMatchTie
