@@ -81,7 +81,7 @@ export default function TicTacToe() {
     setRoom(room_id);
 
     // Letting user join the room only once
-    if (room_id && room_id !== "tic-tac-toe" && flag < 1) {
+    if (room_id && flag < 1) {
       flag++;
       socket.emit("join_room", { room_id, username });
     }

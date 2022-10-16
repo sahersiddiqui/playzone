@@ -2,11 +2,14 @@ import Link from "next/link";
 import { Col, Row } from "antd";
 import { useRouter } from "next/router";
 import MetaTag from "./components/MetaTag";
+import { useState } from "react";
 
 export default function Home() {
   const router = useRouter();
+  const [isDisabled, setIsDisabled] = useState(false);
 
   const joinRoom = () => {
+    setIsDisabled(true);
     let roomId = Math.random().toString(36).slice(2);
     router.push(`tic-tac-toe/${roomId}`);
   };
@@ -53,9 +56,14 @@ export default function Home() {
       <Row className="HomeActions">
         <Col xs={24} md={6}></Col>
         <Col xs={24} md={6}>
-          <span className="PlayButton" onClick={joinRoom}>
+          <button
+            disabled={isDisabled}
+            style={{ paddingTop: 0 }}
+            className="PlayButton"
+            onClick={joinRoom}
+          >
             Online Player
-          </span>
+          </button>
           {/* <Link href="#">
             <a className="PlayButton">Online Player</a>
           </Link> */}
