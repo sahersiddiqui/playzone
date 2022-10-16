@@ -1,36 +1,33 @@
 import { Col, Row } from "antd";
 import io from "socket.io-client";
+import Zoom from "@mui/material/Zoom";
 import { useRouter } from "next/router";
 import MetaTag from "../components/MetaTag";
 import HeaderComponent from "../components/Header";
 import FooterComponent from "../components/Footer";
+import { ShareOutlined } from "@mui/icons-material";
 import GameBoardComponent from "../components/GameBoard";
 import AnalyticsComponent from "../components/Analytics";
 import ResultBarComponent from "../components/ResultBar";
 import React, { useEffect, useRef, useState } from "react";
 import {
-  Backdrop,
-  CircularProgress,
   Hidden,
-  SpeedDial,
-  SpeedDialAction,
-  SpeedDialIcon,
   Tooltip,
-  Typography,
+  Backdrop,
+  SpeedDial,
+  CircularProgress,
 } from "@mui/material";
 import { ShareOutlined } from "@mui/icons-material";
-import Zoom from "@mui/material/Zoom";
+import { Backdrop, CircularProgress, Hidden, SpeedDial } from "@mui/material";
 
-const connectionOptions = {
-  timeout: 10000,
-  transports: ["websocket"],
-  "force new connection": true,
-  reconnectionAttempts: "Infinity",
-};
-const socket = io.connect(
-  process.env.NEXT_PUBLIC_BACKEND_SERVER,
-  connectionOptions
-);
+// const connectionOptions = {
+//   timeout: 10000,
+//   transports: ["websocket"],
+//   "force new connection": true,
+//   reconnectionAttempts: "Infinity",
+// };
+// connectionOptions
+const socket = io.connect(process.env.NEXT_PUBLIC_BACKEND_SERVER);
 
 export default function TicTacToe() {
   const router = useRouter();
