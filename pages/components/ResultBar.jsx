@@ -34,7 +34,7 @@ const ResultBarComponent = ({
           variant="filled"
           onClose={handleCloseResponseMesg}
         >
-          {responseMesg}
+          <span>{responseMesg}</span>
         </Alert>
       </Snackbar>
     </>

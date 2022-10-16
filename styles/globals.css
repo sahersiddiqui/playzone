@@ -391,6 +391,15 @@ a {
   animation: zoom-in-zoom-out 1.5s ease infinite;
 }
 
+
+.customSnackbar >div{
+  background-color: #03a9f4;
+}
+
+.customSnackbar >div >div{
+display: flex;
+}
+
 @keyframes zoom-in-zoom-out {
   0% {
     transform: scale(1, 1);

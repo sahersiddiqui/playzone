@@ -16,9 +16,9 @@ import {
   Backdrop,
   SpeedDial,
   CircularProgress,
+  Snackbar,
 } from "@mui/material";
-import { ShareOutlined } from "@mui/icons-material";
-import { Backdrop, CircularProgress, Hidden, SpeedDial } from "@mui/material";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
 // const connectionOptions = {
 //   timeout: 10000,
@@ -53,6 +53,7 @@ export default function TicTacToe() {
   const [winnerDeclared, setWinnerDeclared] = useState(false);
   const [showResponseBar, setShowResponseBar] = useState(false);
   const [showToolTip, setShowToolTip] = useState(true);
+  const [showCopiedToolTip, setShowCopiedToolTip] = useState(false);
   // const [currMesg, setCurrMesg] = useState({ user: "", mesg: "" });
 
   const winningConditions = [
@@ -192,19 +193,53 @@ export default function TicTacToe() {
     <div className="App">
       <MetaTag />
       <Hidden mdDown>
-        <ResultBarComponent
+        <Snackbar
+          className="customSnackbar"
+          type="info"
+          anchorOrigin={{ vertical: "top", horizontal: "center" }}
+          open={showMesgBar}
+          onClose={() => setShowMesgBar(false)}
+          message={
+            <>
+              Click to copy and share with your friend & ask them to join.&nbsp;
+              <Tooltip
+                title="Copied"
+                placement="bottom"
+                open={showCopiedToolTip}
+              >
+                <ContentCopyIcon
+                  style={{ cursor: "pointer" }}
+                  onClick={() => {
+                    navigator.clipboard.writeText(
+                      `${process.env.NEXT_PUBLIC_GAME_ROOM_URL}/${room}`
+                    );
+                    setShowCopiedToolTip(true);
+                  }}
+                />
+              </Tooltip>
+            </>
+          }
+        />
+
+        {/* <ResultBarComponent
           type={"info"}
           autoHideDuration={null}
           showResponseBar={showMesgBar}
           handleCloseResponseMesg={() => setShowMesgBar(false)}
+          // responseMesg={
+          //   "Copy & share " +
+          //   process.env.NEXT_PUBLIC_GAME_ROOM_URL +
+          //   "/" +
+          //   room +
+          //   " with your friend & ask them to join."
+          // }
           responseMesg={
-            "Copy & share " +
-            process.env.NEXT_PUBLIC_GAME_ROOM_URL +
-            "/" +
-            room +
-            " with your friend & ask them to join."
+            <>
+              Click to copy and share with your friend & ask them to join.
+              <ContentCopyIcon />
+            </>
           }
-        />
+        /> */}
       </Hidden>
       <Hidden mdUp>
         <Tooltip
