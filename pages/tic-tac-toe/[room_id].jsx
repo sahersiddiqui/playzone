@@ -180,7 +180,13 @@ export default function TicTacToe() {
         autoHideDuration={null}
         showResponseBar={showMesgBar}
         handleCloseResponseMesg={() => setShowMesgBar(false)}
-        responseMesg={"Share this url with your friend & ask them to join."}
+        responseMesg={
+          "Copy & share " +
+          process.env.NEXT_PUBLIC_GAME_ROOM_URL +
+          "/" +
+          room +
+          " with your friend & ask them to join."
+        }
       />
       <Backdrop
         open={backdropState}
