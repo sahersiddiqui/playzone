@@ -15,9 +15,11 @@ import {
   SpeedDial,
   SpeedDialAction,
   SpeedDialIcon,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import { ShareOutlined } from "@mui/icons-material";
+import Zoom from "@mui/material/Zoom";
 
 const connectionOptions = {
   timeout: 10000,
@@ -53,6 +55,7 @@ export default function TicTacToe() {
   const [backdropState, setBackdropState] = useState(true);
   const [winnerDeclared, setWinnerDeclared] = useState(false);
   const [showResponseBar, setShowResponseBar] = useState(false);
+  const [showToolTip, setShowToolTip] = useState(true);
   // const [currMesg, setCurrMesg] = useState({ user: "", mesg: "" });
 
   const winningConditions = [
@@ -90,6 +93,10 @@ export default function TicTacToe() {
     socket.on("join_room_error", (data) => {
       if (!data) setErrorMesg("Play room is full!");
     });
+
+    setTimeout(() => {
+      setShowToolTip(false);
+    }, 5000);
   }, []);
 
   useEffect(() => {
@@ -203,20 +210,27 @@ export default function TicTacToe() {
         />
       </Hidden>
       <Hidden mdUp>
-        <SpeedDial
-          className="SpeedDialBtn"
-          ariaLabel="Share room"
-          sx={{
-            position: "fixed",
-            zIndex: (theme) => theme.zIndex.drawer + 2,
-            bottom: 16,
-            right: 16,
-          }}
-          icon={<ShareOutlined />}
-          onClick={() => {
-            window.location.href = `whatsapp://send?text=${process.env.NEXT_PUBLIC_GAME_ROOM_URL}/${room}`;
-          }}
-        ></SpeedDial>
+        <Tooltip
+          TransitionComponent={Zoom}
+          title="Click Me"
+          placement="top"
+          open={showToolTip}
+        >
+          <SpeedDial
+            className="SpeedDialBtn"
+            ariaLabel="Share room"
+            sx={{
+              position: "fixed",
+              zIndex: (theme) => theme.zIndex.drawer + 2,
+              bottom: 16,
+              right: 16,
+            }}
+            icon={<ShareOutlined />}
+            onClick={() => {
+              window.location.href = `whatsapp://send?text=${process.env.NEXT_PUBLIC_GAME_ROOM_URL}/${room}`;
+            }}
+          ></SpeedDial>
+        </Tooltip>
       </Hidden>
 
       <Backdrop
@@ -253,11 +267,21 @@ export default function TicTacToe() {
           isMatchTie
             ? "Last match was a draw."
             : winnerDeclared
-            ? "Congrats. You have won the game."
+            ? initMove === winnerTeam
+              ? "Congrats. You have won the game."
+              : "Opps. You have lost the game."
             : "Retry your match!"
         }
         handleCloseResponseMesg={handleCloseResponseMesg}
-        type={isMatchTie ? "warning" : winnerDeclared ? "success" : "info"}
+        type={
+          isMatchTie
+            ? "warning"
+            : winnerDeclared
+            ? initMove === winnerTeam
+              ? "success"
+              : "error"
+            : "info"
+        }
       />
 
       <Row>
