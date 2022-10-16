@@ -60,7 +60,7 @@ a {
   -webkit-text-fill-color: transparent;
 }
 
-.HomeActions>.ant-col {
+.HomeActions > .ant-col {
   display: flex;
   padding-bottom: 5%;
   align-items: center;
@@ -78,6 +78,10 @@ a {
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.SpeedDialBtn > button {
+  background-color: #ff5db1 !important;
 }
 
 .App-header {
@@ -146,14 +150,12 @@ a {
   /* margin-bottom: 12%; */
 }
 
-
 /* winning cut line css */
 .line {
   border-top: 5px solid white;
   position: absolute;
   box-sizing: border-box;
   z-index: 1;
-
 }
 
 .diagonal-line {
@@ -219,8 +221,7 @@ a {
 
 /* winning cut line css */
 
-
-.GameBoard>div {
+.GameBoard > div {
   width: 75%;
   background-color: #f0f2f5;
   padding: 10px;
@@ -243,7 +244,7 @@ a {
   margin-bottom: 30px;
 }
 
-.AnalyticsBoard>div {
+.AnalyticsBoard > div {
   width: 75%;
   min-height: 30vh;
   background-color: #f0f2f5;
@@ -264,7 +265,7 @@ a {
   margin-bottom: 12%; */
 }
 
-.WinnerBoard>div {
+.WinnerBoard > div {
   width: 75%;
   background-color: #f0f2f5;
   padding: 5%;
@@ -287,7 +288,7 @@ a {
   flex-direction: column;
 }
 
-.notes>div {
+.notes > div {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -438,11 +439,10 @@ a {
   .r-vertical-line {
     width: calc(123%) !important;
   }
-
 }
 
 @media screen and (max-width: 991px) {
-  .AnalyticsBoard>div>div {
+  .AnalyticsBoard > div > div {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -455,7 +455,7 @@ a {
     flex-direction: column;
   }
 
-  .notes>div {
+  .notes > div {
     padding: 0;
     align-items: center;
   }
@@ -471,8 +471,6 @@ a {
   .r-vertical-line {
     width: calc(165%) !important;
   }
-
-
 }
 
 @media screen and (max-width: 800px) {
@@ -486,7 +484,6 @@ a {
     width: 90% !important;
   }
 }
-
 
 @media screen and (max-width: 575px) {
   .GameBoard {
@@ -551,7 +548,6 @@ a {
     border-width: 3px;
   }
 
-
   .diagonal-line {
     width: calc(112%) !important;
     transform: rotate(-43deg);
@@ -578,10 +574,7 @@ a {
     width: calc(83%) !important;
   }
 
-
   /* winning cut line css */
-
-
 }
 
 @media screen and (max-width: 375px) {

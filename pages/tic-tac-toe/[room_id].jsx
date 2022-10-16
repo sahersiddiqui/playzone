@@ -8,7 +8,16 @@ import GameBoardComponent from "../components/GameBoard";
 import AnalyticsComponent from "../components/Analytics";
 import ResultBarComponent from "../components/ResultBar";
 import React, { useEffect, useRef, useState } from "react";
-import { Backdrop, CircularProgress, Typography } from "@mui/material";
+import {
+  Backdrop,
+  CircularProgress,
+  Hidden,
+  SpeedDial,
+  SpeedDialAction,
+  SpeedDialIcon,
+  Typography,
+} from "@mui/material";
+import { ShareOutlined } from "@mui/icons-material";
 
 const connectionOptions = {
   timeout: 10000,
@@ -175,19 +184,46 @@ export default function TicTacToe() {
   return (
     <div className="App">
       <MetaTag />
-      <ResultBarComponent
-        type={"info"}
-        autoHideDuration={null}
-        showResponseBar={showMesgBar}
-        handleCloseResponseMesg={() => setShowMesgBar(false)}
-        responseMesg={
-          "Copy & share " +
-          process.env.NEXT_PUBLIC_GAME_ROOM_URL +
-          "/" +
-          room +
-          " with your friend & ask them to join."
-        }
-      />
+      <Hidden mdDown>
+        <ResultBarComponent
+          type={"info"}
+          autoHideDuration={null}
+          showResponseBar={showMesgBar}
+          handleCloseResponseMesg={() => setShowMesgBar(false)}
+          responseMesg={
+            "Copy & share " +
+            process.env.NEXT_PUBLIC_GAME_ROOM_URL +
+            "/" +
+            room +
+            " with your friend & ask them to join."
+          }
+        />
+      </Hidden>
+      <Hidden mdUp>
+        <SpeedDial
+          className="SpeedDialBtn"
+          ariaLabel="Share room"
+          sx={{
+            position: "fixed",
+            zIndex: (theme) => theme.zIndex.drawer + 2,
+            bottom: 16,
+            right: 16,
+          }}
+          icon={<ShareOutlined />}
+          onClick={() => {
+            window.location.href = `whatsapp://send?text=${process.env.NEXT_PUBLIC_GAME_ROOM_URL}/${room}`;
+          }}
+        >
+          {/* {[{ icon: <ShareOutlined />, name: "Share" }].map((action) => (
+            <SpeedDialAction
+              key={action.name}
+              icon={action.icon}
+              tooltipTitle={action.name}
+            />
+          ))} */}
+        </SpeedDial>
+      </Hidden>
+
       <Backdrop
         open={backdropState}
         sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
