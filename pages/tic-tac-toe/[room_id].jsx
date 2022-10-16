@@ -25,7 +25,10 @@ const connectionOptions = {
   "force new connection": true,
   reconnectionAttempts: "Infinity",
 };
-const socket = io.connect(process.env.BACKEND_SERVER, connectionOptions);
+const socket = io.connect(
+  process.env.NEXT_PUBLIC_BACKEND_SERVER,
+  connectionOptions
+);
 
 export default function TicTacToe() {
   const router = useRouter();
