@@ -55,6 +55,7 @@ export default function TicTacToe() {
   const [showToolTip, setShowToolTip] = useState(true);
   const [showCopiedToolTip, setShowCopiedToolTip] = useState(false);
   // const [currMesg, setCurrMesg] = useState({ user: "", mesg: "" });
+  const [winnerIndex, setWinnerIndex] = useState();
 
   const winningConditions = [
     // Horizontal
@@ -177,7 +178,7 @@ export default function TicTacToe() {
 
   const checkWinner = (value) => {
     setCounter(counter + 1);
-    winningConditions.map((item) => {
+    winningConditions.map((item, index) => {
       let condRes = item.every((elem) => responses[elem] === value);
 
       if (condRes) {
@@ -185,6 +186,7 @@ export default function TicTacToe() {
         setWinnerDeclared(true);
         setBackdropState(false);
         setShowResponseBar(true);
+        setWinnerIndex(index);
       }
     });
   };
@@ -328,11 +330,11 @@ export default function TicTacToe() {
             counter={counter}
             responses={responses}
             isMatchTie={isMatchTie}
-            resetMatch={resetMatch}
-            // winnerTeam={winnerTeam}
-            // winnerIndex={winnerIndex}
             populateBoard={populateBoard}
             winnerDeclared={winnerDeclared}
+            winnerIndex={winnerIndex}
+            winnerTeam={winnerTeam}
+            resetMatch={resetMatch}
           />
         </Col>
         <Col xs={24} sm={12}>

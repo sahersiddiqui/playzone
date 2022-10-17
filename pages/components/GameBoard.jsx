@@ -34,7 +34,7 @@ const GameBoardComponent = ({
   else if (winnerIndex === 6) winningLineClass = "r-diagonal-line";
   else if (winnerIndex === 7) winningLineClass = "diagonal-line";
 
-  if (winnerTeam == "x") lineColor = "#ff00b1";
+  if (winnerTeam == "x") lineColor = "#f65cb2";
   else if (winnerTeam == "o") lineColor = "#00cabc";
 
   return (
