@@ -261,7 +261,7 @@ export default function TicTacToe() {
             }}
             icon={<ShareOutlined />}
             onClick={() => {
-              window.location.href = `whatsapp://send?text=${process.env.NEXT_PUBLIC_GAME_ROOM_URL}/${room}`;
+              window.open(`whatsapp://send?text=${process.env.NEXT_PUBLIC_GAME_ROOM_URL}/${room}`);
             }}
           ></SpeedDial>
         </Tooltip>
