@@ -17,8 +17,12 @@ import {
   SpeedDial,
   CircularProgress,
   Snackbar,
+  SpeedDialAction,
 } from "@mui/material";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import FileCopyIcon from "@mui/icons-material/FileCopyOutlined";
+import ShareIcon from "@mui/icons-material/Share";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 
 // const connectionOptions = {
 //   timeout: 10000,
@@ -191,6 +195,27 @@ export default function TicTacToe() {
     });
   };
 
+  const actions = [
+    {
+      icon: <FileCopyIcon />,
+      name: "Copy",
+      onClick: () => {
+        navigator.clipboard.writeText(
+          `${process.env.NEXT_PUBLIC_GAME_ROOM_URL}/${room}`
+        );
+      },
+    },
+    {
+      icon: <WhatsAppIcon />,
+      name: "Share",
+      onClick: () => {
+        window.open(
+          `whatsapp://send?text=${process.env.NEXT_PUBLIC_GAME_ROOM_URL}/${room}`
+        );
+      },
+    },
+  ];
+
   return (
     <div className="App">
       <MetaTag />
@@ -244,7 +269,7 @@ export default function TicTacToe() {
         /> */}
       </Hidden>
       <Hidden mdUp>
-        <Tooltip
+        {/* <Tooltip
           TransitionComponent={Zoom}
           title="Click Me"
           placement="top"
@@ -264,7 +289,28 @@ export default function TicTacToe() {
               window.open(`whatsapp://send?text=${process.env.NEXT_PUBLIC_GAME_ROOM_URL}/${room}`);
             }}
           ></SpeedDial>
-        </Tooltip>
+        </Tooltip> */}
+        <SpeedDial
+          className="SpeedDialBtn"
+          ariaLabel="Share room"
+          sx={{
+            position: "fixed",
+            zIndex: (theme) => theme.zIndex.drawer + 2,
+            bottom: 16,
+            right: 16,
+          }}
+          direction={"up"}
+          icon={<ShareOutlined />}
+        >
+          {actions.map((action) => (
+            <SpeedDialAction
+              key={action.name}
+              icon={action.icon}
+              tooltipTitle={action.name}
+              onClick={action.onClick}
+            />
+          ))}
+        </SpeedDial>
       </Hidden>
 
       <Backdrop
