@@ -27,7 +27,12 @@ import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 //   reconnectionAttempts: "Infinity",
 // };
 // connectionOptions
-const socket = io.connect(process.env.NEXT_PUBLIC_BACKEND_SERVER);
+const socket = io.connect(process.env.NEXT_PUBLIC_BACKEND_SERVER, {
+  reconnection: true,
+  reconnectionDelay: 500,
+  reconnectionAttempts: 10,
+  reconnectionDelayMax: 5000,
+});
 
 export default function TicTacToe() {
   const router = useRouter();
