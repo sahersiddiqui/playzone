@@ -2,13 +2,13 @@ import { Col, Row } from "antd";
 import io from "socket.io-client";
 import Zoom from "@mui/material/Zoom";
 import { useRouter } from "next/router";
-import MetaTag from "../components/MetaTag";
-import HeaderComponent from "../components/Header";
-import FooterComponent from "../components/Footer";
+import MetaTag from "../components/tictactoe/MetaTag";
+import HeaderComponent from "../components/tictactoe/Header";
+import FooterComponent from "../components/tictactoe/Footer";
 import { ShareOutlined } from "@mui/icons-material";
-import GameBoardComponent from "../components/GameBoard";
-import AnalyticsComponent from "../components/Analytics";
-import ResultBarComponent from "../components/ResultBar";
+import GameBoardComponent from "../components/tictactoe/GameBoard";
+import AnalyticsComponent from "../components/tictactoe/Analytics";
+import ResultBarComponent from "../components/tictactoe/ResultBar";
 import React, { useEffect, useRef, useState } from "react";
 import {
   Hidden,

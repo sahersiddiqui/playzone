@@ -75,7 +75,7 @@ a {
 .fullBg {
   min-height: 100vh;
   font-family: "Chilanka" !important;
-  background-image: url("/images/paperBg.jpg");
+  background-image: url("/images/hangsman/paperBg.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -90,8 +90,8 @@ a {
   background-position: bottom right, top left;
   background-size: 15%;
   background-repeat: no-repeat;
-  background-image: url("/images/bg-bottom-right.png"),
-    url("/images/bg-top-left.png");
+  background-image: url("/images/tictactoe/bg-bottom-right.png"),
+    url("/images/tictactoe/bg-top-left.png");
 }
 
 .HomeImage {

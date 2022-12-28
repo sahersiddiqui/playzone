@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useEffect } from "react";
 import { Grid, Typography } from "@mui/material";
-import MetaTagHangsman from "../components/MetaTagHangsman";
+import MetaTagHangsman from "../components/hangsman/MetaTagHangsman";
 
 export default function Home() {
   useEffect(() => {
@@ -17,7 +17,7 @@ export default function Home() {
           <Grid item xs={12} md={4}>
             <img
               className="hangmanImg"
-              src="/images/hangman-hd-removebg-preview.png"
+              src="/images/hangsman/hangman-hd-removebg-preview.png"
             />
           </Grid>
           <Grid item xs={12} md={1}></Grid>

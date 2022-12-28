@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Col, Row, Typography } from "antd";
 import { useRouter } from "next/router";
-import MetaTag from "../components/MetaTag";
+import MetaTag from "../components/tictactoe/MetaTag";
 import { useState } from "react";
 import { Backdrop, CircularProgress } from "@mui/material";
 
@@ -67,7 +67,7 @@ export default function Home() {
           }}
         >
           <img
-            src="/images/home-logo.jpeg"
+            src="/images/tictactoe/home-logo.jpeg"
             alt="home logo"
             className="zoom-in-out-image"
           />
@@ -85,7 +85,7 @@ export default function Home() {
           }}
         >
           <img
-            src="/images/home-title.jpg"
+            src="/images/tictactoe/home-title.jpg"
             alt="home title"
             className="linear-title"
           />

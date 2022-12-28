@@ -1,10 +1,10 @@
 import { Col, Row } from "antd";
-import MetaTag from "../components/MetaTag";
-import HeaderComponent from "../components/Header";
-import FooterComponent from "../components/Footer";
-import GameBoardComponent from "../components/GameBoard";
-import AnalyticsComponent from "../components/Analytics";
-import ResultBarComponent from "../components/ResultBar";
+import MetaTag from "../components/tictactoe/MetaTag";
+import HeaderComponent from "../components/tictactoe/Header";
+import FooterComponent from "../components/tictactoe/Footer";
+import GameBoardComponent from "../components/tictactoe/GameBoard";
+import AnalyticsComponent from "../components/tictactoe/Analytics";
+import ResultBarComponent from "../components/tictactoe/ResultBar";
 import React, { useEffect, useRef, useState } from "react";
 
 export default function TicTacToe() {
