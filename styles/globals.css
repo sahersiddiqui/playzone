@@ -19,6 +19,10 @@
   font-family: Chilanka;
   src: url("/fonts/Chilanka/Chilanka-Regular.ttf");
 }
+@font-face {
+  font-family: Fuzzy Bubbles;
+  src: url("/fonts/Fuzzy_Bubbles/FuzzyBubbles-Regular.ttf");
+}
 
 html,
 body {

@@ -24,12 +24,13 @@ const style = {
   width: 350,
   bgcolor: "background.paper",
   boxShadow: 24,
-  color: "#a82a1e",
   textAlign: "center",
   "& span": {
     fontSize: 150,
+    color: "#a82a1e",
   },
   "& .MuiTypography-h6": {
+    color: "#a82a1e",
     fontFamily: "Eater",
   },
 };
