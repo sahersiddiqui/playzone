@@ -1,135 +1,118 @@
-import { Col, Row } from "antd";
+import Link from "next/link";
+import { Col, Row, Typography } from "antd";
+import { useRouter } from "next/router";
 import MetaTag from "../components/MetaTag";
-import HeaderComponent from "../components/Header";
-import FooterComponent from "../components/Footer";
-import GameBoardComponent from "../components/GameBoard";
-import AnalyticsComponent from "../components/Analytics";
-import ResultBarComponent from "../components/ResultBar";
-import React, { useEffect, useRef, useState } from "react";
+import { useState } from "react";
+import { Backdrop, CircularProgress } from "@mui/material";
 
-export default function TicTacToe() {
-  const [counter, setCounter] = useState(0);
-  const [responses, setResponses] = useState([]);
-  const [winnerTeam, setWinnerTeam] = useState("_");
-  const [isMatchTie, setIsMatchTie] = useState(false);
-  const [winnerDeclared, setWinnerDeclared] = useState(false);
-  const [showResponseBar, setShowResponseBar] = useState(false);
-  const [winnerIndex, setWinnerIndex] = useState();
+export default function Home() {
+  const router = useRouter();
+  const [isDisabled, setIsDisabled] = useState(false);
+  const [backdropState, setBackdropState] = useState(false);
 
-  const winningConditions = [
-    // Horizontal
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-
-    // Vertical
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-
-    // Diagnonal
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
-  const topRef = useRef(null);
-  const bottomRef = useRef(null);
-
-  useEffect(() => {
-    if (winnerDeclared || isMatchTie) {
-      // scroll to bottom every time states (winnerDeclared, isMatchTie) change
-      bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-    }
-
-    if (counter === 9 && !winnerDeclared) {
-      setIsMatchTie(true);
-      setShowResponseBar(true);
-    }
-  }, [counter, winnerDeclared, isMatchTie]);
-
-  const handleCloseResponseMesg = () => {
-    setShowResponseBar(false);
-  };
-
-  const resetMatch = () => {
-    setCounter(0);
-    setResponses([]);
-    setWinnerTeam("_");
-    setIsMatchTie(false);
-    setWinnerDeclared(false);
-    setWinnerIndex("");
-    topRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const populateBoard = (index, value) => {
-    if (winnerDeclared) return;
-    responses[index] = value;
-    setResponses(responses);
-    checkWinner(value);
-  };
-
-  const checkWinner = (value) => {
-    setCounter(counter + 1);
-    winningConditions.map((item, index) => {
-      let condRes = item.every((elem) => responses[elem] === value);
-      if (condRes) {
-        setWinnerTeam(value);
-        setWinnerDeclared(true);
-        setShowResponseBar(true);
-        setWinnerIndex(index);
-      }
-    });
+  const joinRoom = () => {
+    setIsDisabled(true);
+    setBackdropState(true);
+    let roomId = Math.random().toString(36).slice(2);
+    router.push(`tic-tac-toe/${roomId}`);
   };
 
   return (
-    <div className="App">
+    <div className="HomeContent">
       <MetaTag />
-      <ResultBarComponent
-        showResponseBar={showResponseBar}
-        responseMesg={
-          isMatchTie
-            ? "Last match was a draw."
-            : winnerDeclared
-            ? "Congrats. You have won the game."
-            : "Retry your match!"
-        }
-        handleCloseResponseMesg={handleCloseResponseMesg}
-        type={isMatchTie ? "warning" : winnerDeclared ? "success" : "info"}
-      />
 
-      <Row>
-        <Col span={24}>
-          <div ref={topRef} />
-          <HeaderComponent />
-        </Col>
-      </Row>
-      <Row>
-        <Col xs={24} sm={12}>
-          <GameBoardComponent
-            counter={counter}
-            responses={responses}
-            isMatchTie={isMatchTie}
-            populateBoard={populateBoard}
-            winnerDeclared={winnerDeclared}
-            winnerIndex={winnerIndex}
-            winnerTeam={winnerTeam}
-            resetMatch={resetMatch}
+      <Backdrop
+        open={backdropState}
+        sx={{
+          zIndex: (theme) => theme.zIndex.drawer + 1,
+        }}
+      >
+        <Row>
+          <Col md={24} xs={24}>
+            <Typography
+              variant="h4"
+              style={{
+                textAlign: "center",
+                top: 60,
+                position: "fixed",
+                left: 10,
+                right: 10,
+                fontFamily: "Hanalei Fill",
+                fontSize: "1.6em",
+                color: "whitesmoke",
+              }}
+            >
+              Hold tight, we are making room for you!
+            </Typography>
+          </Col>
+          <br />
+          <Col
+            md={24}
+            xs={24}
+            style={{ marginTop: "20px", textAlign: "center" }}
+          >
+            <CircularProgress style={{ color: "#ff5db1 !important" }} />
+          </Col>
+        </Row>
+      </Backdrop>
+
+      <Row className="HomeImage">
+        <Col
+          xs={24}
+          md={12}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            flexDirection: "column",
+          }}
+        >
+          <img
+            src="/images/home-logo.jpeg"
+            alt="home logo"
+            className="zoom-in-out-image"
           />
         </Col>
-        <Col xs={24} sm={12}>
-          <AnalyticsComponent
-            counter={counter}
-            resetMatch={resetMatch}
-            winnerTeam={winnerTeam}
-            isMatchTie={isMatchTie}
-            winnerDeclared={winnerDeclared}
+      </Row>
+      <Row className="HomeImage">
+        <Col
+          xs={24}
+          md={12}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            flexDirection: "column",
+            marginTop: "3%",
+          }}
+        >
+          <img
+            src="/images/home-title.jpg"
+            alt="home title"
+            className="linear-title"
           />
-          <div ref={bottomRef} />
         </Col>
       </Row>
-      <Row>
-        <Col span={24}>
-          <FooterComponent />
+      <br />
+      <Row className="HomeActions">
+        <Col xs={24} md={6}></Col>
+        <Col xs={24} md={6}>
+          <button
+            disabled={isDisabled}
+            style={{ paddingTop: 0 }}
+            className="PlayButton"
+            onClick={joinRoom}
+          >
+            Online Player
+          </button>
+          {/* <Link href="#">
+            <a className="PlayButton">Online Player</a>
+          </Link> */}
         </Col>
+        <Col xs={24} md={6}>
+          <Link href="/tic-tac-toe/offline">
+            <a className="PlayButton">Offline Player</a>
+          </Link>
+        </Col>
+        <Col xs={24} md={6}></Col>
       </Row>
     </div>
   );

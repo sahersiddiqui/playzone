@@ -1,7 +1,30 @@
+@font-face {
+  font-family: Eater;
+  src: url("/fonts/Eater/Eater-Regular.ttf");
+}
+@font-face {
+  font-family: Creepster;
+  src: url("/fonts/Creepster/Creepster-Regular.ttf");
+}
+@font-face {
+  font-family: Nosifer;
+  src: url("/fonts/Nosifer/Nosifer-Regular.ttf");
+}
+@font-face {
+  font-family: Rubik_Fade;
+  src: url("/fonts/Rubik_Fade/Rubik80sFade-Regular.ttf");
+}
+
+@font-face {
+  font-family: Chilanka;
+  src: url("/fonts/Chilanka/Chilanka-Regular.ttf");
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
+  scroll-behavior: smooth;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
@@ -13,6 +36,48 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.textDecor {
+  color: #866f45;
+  text-decoration: underline;
+}
+
+.content {
+  padding-top: 50px;
+  font-family: Chilanka !important;
+  font-size: 1.2em !important;
+  font-weight: 800 !important;
+  text-align: center;
+}
+
+.playGameBtn {
+  font-family: Chilanka !important;
+  font-weight: 1000 !important;
+  color: black !important;
+  padding: 14px 8px 8px 8px !important;
+  border-top-left-radius: 10px !important;
+  border-bottom-left-radius: 10px !important;
+  border-top-right-radius: 10px !important;
+  border-bottom-right-radius: 10px !important;
+  background-color: transparent;
+  border: 2px solid #121212 !important;
+}
+
+.heading {
+  padding-top: 100px;
+  font-family: Chilanka !important;
+  font-size: 4em !important;
+  font-weight: 1000 !important;
+  text-align: center;
+}
+
+.fullBg {
+  min-height: 100vh;
+  font-family: "Chilanka" !important;
+  background-image: url("/images/paperBg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .HomeContent {
@@ -391,13 +456,12 @@ a {
   animation: zoom-in-zoom-out 1.5s ease infinite;
 }
 
-
-.customSnackbar >div{
+.customSnackbar > div {
   background-color: #03a9f4;
 }
 
-.customSnackbar >div >div{
-display: flex;
+.customSnackbar > div > div {
+  display: flex;
 }
 
 @keyframes zoom-in-zoom-out {
@@ -611,5 +675,42 @@ display: flex;
 
   .r-vertical-line {
     width: calc(96%) !important;
+  }
+}
+
+/* Hangsman Media Query */
+/* @media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    color: whitesmoke;
+    background: #121212;
+  }
+} */
+
+@media screen and (max-width: 800px) {
+  .heading {
+    padding-top: 0px;
+  }
+
+  .content {
+    padding-top: 0px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .hangmanImg {
+    max-width: inherit;
+  }
+
+  .heading {
+    padding-top: 10px;
+  }
+
+  .content {
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }

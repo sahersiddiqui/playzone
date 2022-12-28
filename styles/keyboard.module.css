@@ -1,0 +1,90 @@
+.keyboardContainer {
+  margin-top: 1% !important;
+}
+
+.keyboardContainer > div {
+  display: flex;
+  justify-content: center;
+}
+
+.keys {
+  border: 3px solid #866f45;
+  border-radius: 10px;
+  font-size: 3em;
+  color: #866f45;
+  margin: 0px 10px;
+  /* padding: 10px; */
+  height: 60px;
+  width: 60px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.word {
+  letter-spacing: 5px;
+  font-size: 4em;
+  color: #866f45;
+  font-weight: 1000;
+  text-decoration: underline;
+}
+
+.disableKeys {
+  border: 3px solid #c1b29d;
+  border-radius: 10px;
+  font-size: 3em;
+  color: #c1b29d;
+  margin: 0px 10px;
+  /* padding: 10px; */
+  height: 60px;
+  width: 60px;
+  text-align: center;
+  cursor: not-allowed;
+}
+
+.hangmanContainer {
+  margin-left: 30px;
+  width: 100px;
+  overflow: hidden;
+}
+
+.definition {
+  color: #866f45;
+  font-family: Chilanka !important;
+  text-align: center;
+}
+
+@media screen and (max-width: 575px) {
+  .word {
+    letter-spacing: 5px;
+    font-size: 2.5em;
+    font-weight: 1000;
+  }
+
+  .keys {
+    border-width: 2px;
+    font-size: 1.5em;
+    margin: 0px 3px;
+    height: 30px;
+    width: 30px;
+  }
+
+  .disableKeys {
+    border-width: 2px;
+    font-size: 1.5em;
+    margin: 0px 3px;
+    height: 30px;
+    width: 30px;
+  }
+
+  .definition {
+    font-size: 1.5em;
+  }
+
+  .hangmanContainer {
+    margin-bottom: 50px;
+  }
+
+  .keyboardContainer {
+    padding-bottom: 30px;
+  }
+}
