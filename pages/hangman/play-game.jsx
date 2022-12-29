@@ -13,11 +13,13 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import HouseIcon from "@mui/icons-material/House";
 import keyboard from "../../styles/hangman/keyboard.module.css";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import MetaTagHangman from "../components/hangman/MetaTagHangman";
 import CircularProgress from "@mui/material/CircularProgress";
-import { ShareOutlined } from "@mui/icons-material";
+import { MoreVertOutlined, ShareOutlined } from "@mui/icons-material";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 const style = {
   p: 4,
@@ -119,6 +121,13 @@ const Game = () => {
         );
       },
     },
+    {
+      icon: <HouseIcon />,
+      name: "Home",
+      onClick: () => {
+        window.location.href = `${process.env.NEXT_PUBLIC_GAME_ROOM_URL}`;
+      },
+    },
   ];
 
   return (
@@ -136,7 +145,7 @@ const Game = () => {
             right: 30,
           }}
           direction={"up"}
-          icon={<ShareOutlined />}
+          icon={<MoreVertOutlined />}
         >
           {actions.map((action) => (
             <SpeedDialAction
@@ -262,7 +271,9 @@ const Game = () => {
             );
           })}
         </Grid>
-        <br /><br /><br />
+        <br />
+        <br />
+        <br />
       </div>
     </>
   );
