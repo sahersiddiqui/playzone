@@ -1,4 +1,5 @@
 import { Grid } from "@mui/material";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import styles from "../styles/Home.module.css";
 import MetaTag from "./components/tictactoe/MetaTag";
@@ -12,7 +13,7 @@ function Main() {
       <div className={styles.innerContainer}>
         <Grid container>
           <Grid item xs={12} sm={3}>
-            <img src="/images/logo.png" className={styles.homeLogo} />
+            <Image src="/images/logo.png" className={styles.homeLogo} />
           </Grid>
         </Grid>
         <Grid container className={styles.gameContainer}>
@@ -23,7 +24,7 @@ function Main() {
             onClick={() => router.push("/tic-tac-toe")}
           >
             <div className={styles.imageContainer}>
-              <img src="/images/tictactoe.svg" />
+              <Image src="/images/tictactoe.svg" />
             </div>
             <h4 className={styles.gameTitle}>Tic Tac Toe</h4>
           </Grid>
@@ -34,7 +35,7 @@ function Main() {
             onClick={() => router.push("/hangman")}
           >
             <div className={styles.imageContainer}>
-              <img src="/images/hangman.svg" />
+              <Image src="/images/hangman.svg" />
             </div>
             <h4 className={styles.gameTitle}>Hangman</h4>
           </Grid>

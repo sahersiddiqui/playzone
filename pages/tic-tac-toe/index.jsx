@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import MetaTagTictactoe from "../components/tictactoe/MetaTagTictactoe";
 import { useState } from "react";
 import { Backdrop, CircularProgress } from "@mui/material";
+import Image from "next/image";
 
 export default function Home() {
   const router = useRouter();
@@ -66,7 +67,7 @@ export default function Home() {
             flexDirection: "column",
           }}
         >
-          <img
+          <Image
             src="/images/tictactoe/home-logo.jpeg"
             alt="home logo"
             className="zoom-in-out-image"
@@ -84,7 +85,7 @@ export default function Home() {
             marginTop: "3%",
           }}
         >
-          <img
+          <Image
             src="/images/tictactoe/home-title.jpg"
             alt="home title"
             className="linear-title"

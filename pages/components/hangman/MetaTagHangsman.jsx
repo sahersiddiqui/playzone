@@ -4,7 +4,7 @@ const MetaTagHangman = () => {
   return (
     <Head>
       <title>Playzone Hangman - Word Guessing Game</title>
-      <link rel="icon" href="/images/hangman/favicon-hangsman.ico" type="image/x-icon" />
+      <link rel="icon" href="/images/hangman/favicon-hangman.ico" type="image/x-icon" />
       <meta property="og:image" content="/images/hangman/preview.jpg" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta name="theme-color" content="#000000" />
