@@ -20,6 +20,11 @@ export default async function handler(req, res) {
   } catch (err) {
     return res
       .status(err.statusCode ?? 400)
-      .json({ definition: null, word: null });
+      .json({
+        definition: null,
+        word: null,
+        error: JSON.stringify(err),
+        response: err.response,
+      });
   }
 }

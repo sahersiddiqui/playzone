@@ -1,7 +1,10 @@
 import Link from "next/link";
 import { useEffect } from "react";
-import { Grid, Typography } from "@mui/material";
+import { Grid, SpeedDial, SpeedDialAction, Typography } from "@mui/material";
 import MetaTagHangman from "../components/hangman/MetaTagHangman";
+import { MoreVertOutlined } from "@mui/icons-material";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import HouseIcon from "@mui/icons-material/House";
 
 export default function Home() {
   useEffect(() => {
@@ -9,10 +12,52 @@ export default function Home() {
       window.scrollTo(0, document.body.scrollHeight);
     }, 500);
   });
+
+  const actions = [
+    {
+      icon: <WhatsAppIcon />,
+      name: "Share",
+      onClick: () => {
+        window.open(
+          `whatsapp://send?text=${process.env.NEXT_PUBLIC_GAME_ROOM_URL}/hangman`
+        );
+      },
+    },
+    {
+      icon: <HouseIcon />,
+      name: "Home",
+      onClick: () => {
+        window.location.href = `${process.env.NEXT_PUBLIC_GAME_ROOM_URL}`;
+      },
+    },
+  ];
+
   return (
     <>
       <div className="fullBg">
         <MetaTagHangman />
+
+        <SpeedDial
+          className="SpeedDialBtnHangman"
+          ariaLabel="Share hangman"
+          sx={{
+            position: "fixed",
+            zIndex: (theme) => theme.zIndex.drawer + 2,
+            bottom: 16,
+            right: 30,
+          }}
+          direction={"up"}
+          icon={<MoreVertOutlined />}
+        >
+          {actions.map((action) => (
+            <SpeedDialAction
+              key={action.name}
+              icon={action.icon}
+              tooltipTitle={action.name}
+              onClick={action.onClick}
+            />
+          ))}
+        </SpeedDial>
         <Grid container>
           <Grid item xs={12} md={4}>
             <img
