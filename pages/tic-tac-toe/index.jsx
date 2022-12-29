@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Col, Row, Typography } from "antd";
 import { useRouter } from "next/router";
-import MetaTag from "../components/tictactoe/MetaTag";
+import MetaTagTictactoe from "../components/tictactoe/MetaTagTictactoe";
 import { useState } from "react";
 import { Backdrop, CircularProgress } from "@mui/material";
 
@@ -19,7 +19,7 @@ export default function Home() {
 
   return (
     <div className="HomeContent">
-      <MetaTag />
+      <MetaTagTictactoe />
 
       <Backdrop
         open={backdropState}

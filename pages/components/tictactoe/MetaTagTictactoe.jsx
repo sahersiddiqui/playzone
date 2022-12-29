@@ -1,16 +1,16 @@
 import Head from "next/head";
 
-const MetaTag = () => {
+const MetaTagTictactoe = () => {
   return (
     <Head>
-      <title>Playzone - Online Gaming Portal</title>
-      <link rel="icon" href="/images/favicon_io/favicon.ico" type="image/x-icon" />
-      <meta property="og:image" content="/images/favicon_io/android-chrome-512x512.png" />
+      <title>Playzone Tic Tac Toe</title>
+      <link rel="icon" href="/images/tictactoe/favicon.ico" type="image/x-icon" />
+      <meta property="og:image" content="/images/tictactoe/favicon.jpg" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta name="theme-color" content="#000000" />
       <meta
         name="description"
-        content="Play your childhood games online with your friends."
+        content="Play Tic-Tac-Toe online with your friends."
       />
       <link rel="preconnect" href="https://fonts.gstatic.com" />
       <link
@@ -21,4 +21,4 @@ const MetaTag = () => {
   );
 };
 
-export default MetaTag;
+export default MetaTagTictactoe;

@@ -1,12 +1,14 @@
 import { Grid } from "@mui/material";
 import { useRouter } from "next/router";
 import styles from "../styles/Home.module.css";
+import MetaTag from "./components/tictactoe/MetaTag";
 
 function Main() {
   const router = useRouter();
 
   return (
     <div className={styles.mainContainer}>
+      <MetaTag />
       <div className={styles.innerContainer}>
         <Grid container>
           <Grid item xs={12} sm={3}>

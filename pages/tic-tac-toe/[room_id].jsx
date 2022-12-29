@@ -2,7 +2,7 @@ import { Col, Row } from "antd";
 import io from "socket.io-client";
 import Zoom from "@mui/material/Zoom";
 import { useRouter } from "next/router";
-import MetaTag from "../components/tictactoe/MetaTag";
+import MetaTagTictactoe from "../components/tictactoe/MetaTagTictactoe";
 import HeaderComponent from "../components/tictactoe/Header";
 import FooterComponent from "../components/tictactoe/Footer";
 import { ShareOutlined } from "@mui/icons-material";
@@ -223,7 +223,7 @@ export default function TicTacToe() {
 
   return (
     <div className="App">
-      <MetaTag />
+      <MetaTagTictactoe />
       <Hidden mdDown>
         <Snackbar
           className="customSnackbar"
