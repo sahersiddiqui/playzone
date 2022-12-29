@@ -29,12 +29,12 @@ function Main() {
             item
             xs={3}
             style={{ backgroundColor: "#de4492", borderColor: "#de4492" }}
-            onClick={() => router.push("/hangsman")}
+            onClick={() => router.push("/hangman")}
           >
             <div className={styles.imageContainer}>
               <img src="/images/hangman.svg" />
             </div>
-            <h4 className={styles.gameTitle}>Hangsman</h4>
+            <h4 className={styles.gameTitle}>Hangman</h4>
           </Grid>
         </Grid>
       </div>

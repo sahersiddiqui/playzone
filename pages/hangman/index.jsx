@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useEffect } from "react";
 import { Grid, Typography } from "@mui/material";
-import MetaTagHangsman from "../components/hangsman/MetaTagHangsman";
+import MetaTagHangman from "../components/hangman/MetaTagHangman";
 
 export default function Home() {
   useEffect(() => {
@@ -12,12 +12,12 @@ export default function Home() {
   return (
     <>
       <div className="fullBg">
-        <MetaTagHangsman />
+        <MetaTagHangman />
         <Grid container>
           <Grid item xs={12} md={4}>
             <img
               className="hangmanImg"
-              src="/images/hangsman/hangman-hd-removebg-preview.png"
+              src="/images/hangman/hangman-hd-removebg-preview.png"
             />
           </Grid>
           <Grid item xs={12} md={1}></Grid>
@@ -53,7 +53,7 @@ export default function Home() {
             <br />
 
             <div style={{ textAlign: "center" }}>
-              <Link href="/hangsman/play-game">
+              <Link href="/hangman/play-game">
                 <a className="playGameBtn">Play Game</a>
               </Link>
             </div>

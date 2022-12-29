@@ -10,9 +10,9 @@ import {
   Typography,
 } from "@mui/material";
 import { useEffect, useState } from "react";
-import keyboard from "../../styles/hangsman/keyboard.module.css";
+import keyboard from "../../styles/hangman/keyboard.module.css";
 import RefreshIcon from "@mui/icons-material/Refresh";
-import MetaTagHangsman from "../components/hangsman/MetaTagHangsman";
+import MetaTagHangman from "../components/hangman/MetaTagHangman";
 import CircularProgress from "@mui/material/CircularProgress";
 
 const style = {
@@ -108,7 +108,7 @@ const Game = () => {
   return (
     <>
       <div className="fullBg">
-        <MetaTagHangsman />
+        <MetaTagHangman />
 
         <Backdrop
           sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.modal + 1 }}
@@ -166,7 +166,7 @@ const Game = () => {
           <Grid item xs={4} md={1}>
             <div className={keyboard.hangmanContainer}>
               <img
-                src="/images/hangsman/hang-man.svg"
+                src="/images/hangman/hang-man.svg"
                 alt="hangman"
                 style={{ position: "relative", left: `-${100 * wrongChars}px` }}
               />

@@ -79,7 +79,7 @@ a {
 .fullBg {
   min-height: 100vh;
   font-family: "Chilanka" !important;
-  background-image: url("/images/hangsman/paperBg.jpg");
+  background-image: url("/images/hangman/paperBg.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -682,7 +682,7 @@ a {
   }
 }
 
-/* Hangsman Media Query */
+/* Hangman Media Query */
 /* @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
