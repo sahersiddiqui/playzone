@@ -153,6 +153,10 @@ a {
   background-color: #ff5db1 !important;
 }
 
+.SpeedDialBtnHangman > button {
+  background-color: #866f45 !important;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

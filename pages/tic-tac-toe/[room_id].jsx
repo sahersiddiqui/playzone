@@ -21,7 +21,6 @@ import {
 } from "@mui/material";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import FileCopyIcon from "@mui/icons-material/FileCopyOutlined";
-import ShareIcon from "@mui/icons-material/Share";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 
 // const connectionOptions = {
@@ -206,7 +205,7 @@ export default function TicTacToe() {
       name: "Copy",
       onClick: () => {
         navigator.clipboard.writeText(
-          `${process.env.NEXT_PUBLIC_GAME_ROOM_URL}/${room}`
+          `${process.env.NEXT_PUBLIC_GAME_ROOM_URL}/tic-tac-toe/${room}`
         );
       },
     },
@@ -215,7 +214,7 @@ export default function TicTacToe() {
       name: "Share",
       onClick: () => {
         window.open(
-          `whatsapp://send?text=${process.env.NEXT_PUBLIC_GAME_ROOM_URL}/${room}`
+          `whatsapp://send?text=${process.env.NEXT_PUBLIC_GAME_ROOM_URL}/tic-tac-toe/${room}`
         );
       },
     },
@@ -243,7 +242,7 @@ export default function TicTacToe() {
                   style={{ cursor: "pointer" }}
                   onClick={() => {
                     navigator.clipboard.writeText(
-                      `${process.env.NEXT_PUBLIC_GAME_ROOM_URL}/${room}`
+                      `${process.env.NEXT_PUBLIC_GAME_ROOM_URL}/tic-tac-toe/${room}`
                     );
                     setShowCopiedToolTip(true);
                   }}
@@ -261,7 +260,7 @@ export default function TicTacToe() {
           // responseMesg={
           //   "Copy & share " +
           //   process.env.NEXT_PUBLIC_GAME_ROOM_URL +
-          //   "/" +
+          //   "/tic-tac-toe/" +
           //   room +
           //   " with your friend & ask them to join."
           // }
@@ -291,7 +290,7 @@ export default function TicTacToe() {
             }}
             icon={<ShareOutlined />}
             onClick={() => {
-              window.open(`whatsapp://send?text=${process.env.NEXT_PUBLIC_GAME_ROOM_URL}/${room}`);
+              window.open(`whatsapp://send?text=${process.env.NEXT_PUBLIC_GAME_ROOM_URL}/tic-tac-toe/${room}`);
             }}
           ></SpeedDial>
         </Tooltip> */}

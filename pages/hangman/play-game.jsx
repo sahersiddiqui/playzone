@@ -7,13 +7,17 @@ import {
   Fade,
   Grid,
   Modal,
+  SpeedDial,
   Typography,
+  SpeedDialAction,
 } from "@mui/material";
 import { useEffect, useState } from "react";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import keyboard from "../../styles/hangman/keyboard.module.css";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import MetaTagHangman from "../components/hangman/MetaTagHangman";
 import CircularProgress from "@mui/material/CircularProgress";
+import { ShareOutlined } from "@mui/icons-material";
 
 const style = {
   p: 4,
@@ -105,10 +109,44 @@ const Game = () => {
     getServerData();
   };
 
+  const actions = [
+    {
+      icon: <WhatsAppIcon />,
+      name: "Share",
+      onClick: () => {
+        window.open(
+          `whatsapp://send?text=${process.env.NEXT_PUBLIC_GAME_ROOM_URL}/hangman`
+        );
+      },
+    },
+  ];
+
   return (
     <>
       <div className="fullBg">
         <MetaTagHangman />
+
+        <SpeedDial
+          className="SpeedDialBtnHangman"
+          ariaLabel="Share hangman"
+          sx={{
+            position: "fixed",
+            zIndex: (theme) => theme.zIndex.drawer + 2,
+            bottom: 16,
+            right: 30,
+          }}
+          direction={"up"}
+          icon={<ShareOutlined />}
+        >
+          {actions.map((action) => (
+            <SpeedDialAction
+              key={action.name}
+              icon={action.icon}
+              tooltipTitle={action.name}
+              onClick={action.onClick}
+            />
+          ))}
+        </SpeedDial>
 
         <Backdrop
           sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.modal + 1 }}
@@ -224,6 +262,7 @@ const Game = () => {
             );
           })}
         </Grid>
+        <br /><br /><br />
       </div>
     </>
   );
