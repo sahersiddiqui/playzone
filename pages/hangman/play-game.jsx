@@ -14,7 +14,6 @@ import keyboard from "../../styles/hangman/keyboard.module.css";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import MetaTagHangman from "../components/hangman/MetaTagHangman";
 import CircularProgress from "@mui/material/CircularProgress";
-import Image from "next/image";
 
 const style = {
   p: 4,
@@ -166,7 +165,7 @@ const Game = () => {
           <Grid item xs={4} md={3}></Grid>
           <Grid item xs={4} md={1}>
             <div className={keyboard.hangmanContainer}>
-              <Image
+              <img
                 src="/images/hangman/hang-man.svg"
                 alt="hangman"
                 style={{ position: "relative", left: `-${100 * wrongChars}px` }}

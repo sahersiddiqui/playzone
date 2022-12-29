@@ -1,6 +1,5 @@
 import { Grid, Paper } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import Image from "next/image";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -46,12 +45,12 @@ const CrossBoardComponent = ({ counter, responses, populateBoard }) => {
               {responses?.[index] ? (
                 <Item className="PlayIconBlank">
                   {responses?.[index] === "x" ? (
-                    <Image
+                    <img
                       src="/images/tictactoe/x.svg"
                       className="PlayIconX"
                     />
                   ) : (
-                    <Image
+                    <img
                       src="/images/tictactoe/o.svg"
                       className="PlayIconO"
                     />
