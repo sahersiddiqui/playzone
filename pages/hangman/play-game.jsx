@@ -18,8 +18,7 @@ import keyboard from "../../styles/hangman/keyboard.module.css";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import MetaTagHangman from "../components/hangman/MetaTagHangman";
 import CircularProgress from "@mui/material/CircularProgress";
-import { MoreVertOutlined, ShareOutlined } from "@mui/icons-material";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { MoreVertOutlined } from "@mui/icons-material";
 
 const style = {
   p: 4,
